@@ -21,7 +21,7 @@ public class ClientController {
         try {
             clients.add(new Client(Integer.parseInt(params[Client.ID]), params[Client.NAME], params[Client.PHONENUMBER], params[Client.ADDRESS]));
             return true;
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             //TO DO: Show error message
             return false;
         }

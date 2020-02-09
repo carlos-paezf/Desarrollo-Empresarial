@@ -23,7 +23,7 @@ public class ClientTest {
             System.out.println(clientController.list());
         } else {
             //Not Save
-            System.out.println("Sin lista de clientes");
+            System.err.println("Sin lista de clientes");
         }
         
     }
