@@ -28,13 +28,16 @@ public class ClientController {
     }
     
     public String list(){
-        /*
-          String clientString = "";
-          for(Client currentClient : clients){
-            clientString += currentClient.toString();
-          }
-        */
+        /*          String clientString = "";          for(Client currentClient : clients){            clientString += currentClient.toString();          }        */
         return Arrays.toString(clients.toArray());
     }
-    
+
+    public List<Client> getClients() {
+        return clients;
+    }
+
+    public void setClients(List<Client> clients) {
+        this.clients = clients;
+    }
+        
 }

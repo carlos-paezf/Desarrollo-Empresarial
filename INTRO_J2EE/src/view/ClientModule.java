@@ -15,7 +15,9 @@ import model.Client;
  */
 public class ClientModule extends javax.swing.JFrame {
 
+    DefaultTableModel model;
     ClientController clientController;
+
     /**
      * Creates new form ClientModule
      */
@@ -23,9 +25,10 @@ public class ClientModule extends javax.swing.JFrame {
         initComponents();
         clientController = new ClientController();
         String[] columnNames = new String[]{"ID", "Name", "Number Phone", "Address"};
-        DefaultTableModel model = new DefaultTableModel();
+        model = new DefaultTableModel();
         model.setColumnIdentifiers(columnNames);
         listClientTable.setModel(model);
+
     }
 
     /**
@@ -96,6 +99,7 @@ public class ClientModule extends javax.swing.JFrame {
         clientAddressTxfld.setToolTipText("Address client");
 
         clientesRegistrados.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        clientesRegistrados.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         clientesRegistrados.setText("CLIENTES REGISTRADOS");
 
         clientID.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -138,23 +142,14 @@ public class ClientModule extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(infoMassageLbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 43, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(189, 189, 189)
-                                .addComponent(clientesRegistrados))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(227, 227, 227)
-                                .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 43, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(nameClient, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(clientID, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -166,12 +161,16 @@ public class ClientModule extends javax.swing.JFrame {
                                     .addComponent(clientIDTxfld, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(clientNumberPhoneTxfld, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(clientAddressTxfld, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(65, 65, 65)))))
+                                .addGap(65, 65, 65))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36))))
+                    .addComponent(clientesRegistrados, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(227, 227, 227)
+                .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,19 +181,19 @@ public class ClientModule extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(clientIDTxfld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(clientID))
-                .addGap(45, 45, 45)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(clientNameTxfld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nameClient))
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(clientNumberPhoneTxfld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(numberPhoneClient))
-                .addGap(62, 62, 62)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(numberPhoneClient)
+                    .addComponent(clientNumberPhoneTxfld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(clientAddressTxfld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addressClient))
-                .addGap(44, 44, 44)
+                .addGap(33, 33, 33)
                 .addComponent(saveBtn)
                 .addGap(18, 18, 18)
                 .addComponent(infoMassageLbl)
@@ -202,7 +201,7 @@ public class ClientModule extends javax.swing.JFrame {
                 .addComponent(clientesRegistrados)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
+                .addGap(15, 15, 15))
         );
 
         pack();
@@ -222,7 +221,8 @@ public class ClientModule extends javax.swing.JFrame {
         params[Client.NAME] = clientNameTxfld.getText();
         params[Client.PHONENUMBER] = clientNumberPhoneTxfld.getText();
         params[Client.ADDRESS] = clientAddressTxfld.getText();
-        if(clientController.create(params)){
+        if (clientController.create(params)) {
+            refreshClientTable();
             infoMassageLbl.setText("Guardado Correctamente");
         } else {
             infoMassageLbl.setText("Ah ocurrido un error");
@@ -262,6 +262,22 @@ public class ClientModule extends javax.swing.JFrame {
                 new ClientModule().setVisible(true);
             }
         });
+    }
+
+    private void refreshClientTable() {
+        try {
+            model.setRowCount(0);
+            for (Client currentClient : clientController.getClients()) {
+                model.addRow(new Object[]{
+                    currentClient.getId(),
+                    currentClient.getName(),
+                    currentClient.getPhoneNumber(),
+                    currentClient.getAddress()
+                });
+            }
+        } catch (Exception e) {
+            infoMassageLbl.setText("Error: "+e.getMessage());
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
