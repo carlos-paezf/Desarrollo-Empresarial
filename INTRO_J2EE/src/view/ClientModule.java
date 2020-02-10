@@ -135,6 +135,11 @@ public class ClientModule extends javax.swing.JFrame {
                 "ID", "Name", "Number Phone", "Address"
             }
         ));
+        listClientTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listClientTableMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(listClientTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -228,6 +233,12 @@ public class ClientModule extends javax.swing.JFrame {
             infoMassageLbl.setText("Ah ocurrido un error");
         }
     }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void listClientTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listClientTableMouseClicked
+        listClientTable.getValueAt(listClientTable.getSelectedRow(), listClientTable.getSelectedColumn());
+        
+        clientController.getClients().get(listClientTable.getSelectedRow());
+    }//GEN-LAST:event_listClientTableMouseClicked
 
     /**
      * @param args the command line arguments
