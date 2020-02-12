@@ -5,9 +5,8 @@
  */
 package Model;
 
-import java.sql.Connection;
+import com.mysql.jdbc.Connection;
 import java.sql.DriverManager;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,18 +16,15 @@ public class Conexion {
     
     Connection connection;
     
-    public Conexion() {
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-            connection=DriverManager.getConnection("jdbc:mysql://localhost/CRUDJava", "root", "");
-            JOptionPane.showMessageDialog(null, "Conexion establecida...");
-        }catch (Exception e){
-            JOptionPane.showMessageDialog(null, "Error de conexion: " + e.getMessage());
-}
-    }
-    
     public Connection getConnection(){
+        String url = "jdbc:mysql://localhost/crudjava";
+        String user = "root";
+        String password = "";
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            connection=(Connection) DriverManager.getConnection(url, user, password);
+        } catch (Exception e) {
+        }
         return connection;
     }
-    
 }

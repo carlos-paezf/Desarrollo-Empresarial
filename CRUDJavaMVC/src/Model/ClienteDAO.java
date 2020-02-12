@@ -5,48 +5,49 @@
  */
 package Model;
 
-import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author David Ferrer
  */
 public class ClienteDAO {
-
-    Conexion connnection = new Conexion();
-    Connection conn;
+    
+    Conexion conectar = new Conexion();
+    Connection connection;
     PreparedStatement preparedStatement;
     ResultSet resultSet;
-
-    public ArrayList<Cliente> listar() {
-        ArrayList<Cliente> datos = new ArrayList<>();
+    DefaultTableModel model; 
+    
+    public ArrayList listar(){
+        ArrayList<Cliente>datos = new ArrayList<>();
         String sql = "SELECT * FROM clientes";
         try {
-            conn = connnection.getConnection();
-            preparedStatement = conn.prepareStatement(sql);
+            connection = conectar.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                Cliente c = new Cliente();
-                c.setId(resultSet.getInt(1));
-                c.setName(resultSet.getString(2));
-                c.setNumberPhone(resultSet.getString(3));
-                c.setAddress(resultSet.getString(4));
-                datos.add(c);
+            while (resultSet.next()){
+                Cliente cliente = new Cliente();
+                cliente.setId(resultSet.getInt(1));
+                cliente.setName(resultSet.getString(2));
+                cliente.setNumberPhone(resultSet.getString(3));
+                cliente.setAddress(resultSet.getString(4));
+                datos.add(cliente);
             }
         } catch (Exception e) {
         }
         return datos;
     }
-
-    public int Agregar(Cliente cliente) {
+    
+    public int agregar(Cliente cliente){
         String sql = "INSER INTO clientes (Nombre, Numero_Celular, Direccion) VALUES (?,?,?)";
-        try {
-            conn = connnection.getConnection();
-            preparedStatement = conn.prepareStatement(sql);
+         try {
+            connection = conectar.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, cliente.getName());
             preparedStatement.setString(2, cliente.getNumberPhone());
             preparedStatement.setString(3, cliente.getAddress());
@@ -55,13 +56,13 @@ public class ClienteDAO {
         }
         return 1;
     }
-
-    public int Actualizar(Cliente cliente) {
+    
+    public int actualizar(Cliente cliente) {
         int r = 0;
         String sql = "UPDATE clientes SET Nombre=?, Numero_Celular=?, Telefono=? WHERE ID=?";
         try {
-            conn = connnection.getConnection();
-            preparedStatement = conn.prepareStatement(sql);
+            connection = conectar.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, cliente.getName());
             preparedStatement.setString(2, cliente.getNumberPhone());
             preparedStatement.setString(3, cliente.getAddress());
@@ -80,8 +81,8 @@ public class ClienteDAO {
     public void eliminar(int id){
         String sql = "DELETE FROM clientes WHERE ID="+id+"";
         try {
-            conn= connnection.getConnection();
-            preparedStatement= conn.prepareStatement(sql);
+            connection= conectar.getConnection();
+            preparedStatement= connection.prepareStatement(sql);
             preparedStatement.executeUpdate();
         } catch (Exception e) {
         }

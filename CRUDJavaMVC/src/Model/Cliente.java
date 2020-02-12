@@ -16,14 +16,14 @@ public class Cliente {
     String numberPhone;
     String address;
 
+    public Cliente() {
+    }
+
     public Cliente(int id, String name, String numberPhone, String address) {
         this.id = id;
         this.name = name;
         this.numberPhone = numberPhone;
         this.address = address;
-    }
-
-    public Cliente() {
     }
 
     public int getId() {
