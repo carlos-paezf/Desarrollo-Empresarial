@@ -24,7 +24,7 @@ public class Conexion {
             JOptionPane.showMessageDialog(null, "Conexion establecida...");
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error de conexion: " + e.getMessage());
-        }
+}
     }
     
     public Connection getConnection(){
