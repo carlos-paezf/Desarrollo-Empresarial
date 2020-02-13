@@ -20,7 +20,7 @@ public class Conexion {
     public Conexion() {
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            connection=DriverManager.getConnection("jdbc:mysql://localhost/CRUDJava", "root", "");
+            connection=DriverManager.getConnection("jdbc:mysql://localhost/crudjava", "root", "");
             JOptionPane.showMessageDialog(null, "Conexion establecida...");
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error de conexion: " + e.getMessage());

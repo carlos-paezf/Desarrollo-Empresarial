@@ -44,7 +44,7 @@ public class ClienteDAO {
     }
     
     public int agregar(Cliente cliente){
-        String sql = "INSER INTO clientes (Nombre, Numero_Celular, Direccion) VALUES (?,?,?)";
+        String sql = "INSERT INTO clientes (Nombre, Numero_Celular, Direccion) VALUES (?,?,?)";
          try {
             connection = conectar.getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -53,13 +53,15 @@ public class ClienteDAO {
             preparedStatement.setString(3, cliente.getAddress());
             preparedStatement.executeUpdate();
         } catch (Exception e) {
+            e.printStackTrace();
         }
         return 1;
     }
     
     public int actualizar(Cliente cliente) {
         int r = 0;
-        String sql = "UPDATE clientes SET Nombre=?, Numero_Celular=?, Telefono=? WHERE ID=?";
+        String sql = "UPDATE clientes SET Nombre=?, Numero_Celular=?, Direccion=? WHERE ID=?";
+        // String sql = "UPDATE clientes (Nombre, Numero_Celular, Direccion) VALUES (?,?,?) WHERE ID=?";
         try {
             connection = conectar.getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -74,6 +76,7 @@ public class ClienteDAO {
                 return 0;
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
         return r;
     }

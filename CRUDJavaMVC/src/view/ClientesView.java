@@ -217,6 +217,11 @@ public class ClientesView extends javax.swing.JFrame {
         });
 
         btnNuevo.setText("Nuevo");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -267,6 +272,10 @@ public class ClientesView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditarActionPerformed
 
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        nuevo();
+    }//GEN-LAST:event_btnNuevoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -277,6 +286,14 @@ public class ClientesView extends javax.swing.JFrame {
         view.setLocationRelativeTo(null);
     }
 
+    public void nuevo(){
+        txtID.setText("");
+        txtName.setText("");
+        txtNumberPhone.setText("");
+        txtAddress.setText("");
+        txtName.requestFocus();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PnlDatos;
     private javax.swing.JPanel PnlDetalles;

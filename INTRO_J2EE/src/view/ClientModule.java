@@ -17,6 +17,8 @@ public class ClientModule extends javax.swing.JFrame {
 
     DefaultTableModel model;
     ClientController clientController;
+    boolean updateFlag;
+    int tablePos;
 
     /**
      * Creates new form ClientModule
@@ -28,7 +30,7 @@ public class ClientModule extends javax.swing.JFrame {
         model = new DefaultTableModel();
         model.setColumnIdentifiers(columnNames);
         listClientTable.setModel(model);
-
+        updateFlag = false;
     }
 
     /**
@@ -226,20 +228,43 @@ public class ClientModule extends javax.swing.JFrame {
         params[Client.NAME] = clientNameTxfld.getText();
         params[Client.PHONENUMBER] = clientNumberPhoneTxfld.getText();
         params[Client.ADDRESS] = clientAddressTxfld.getText();
-        if (clientController.create(params)) {
+
+        if (updateFlag) {
+            clientController.getClients().get(tablePos).setId(Integer.parseInt(params[Client.ID]));
             refreshClientTable();
-            infoMassageLbl.setText("Guardado Correctamente");
         } else {
-            infoMassageLbl.setText("Ah ocurrido un error");
+
+            if (clientController.create(params)) {
+                refreshClientTable();
+                infoMassageLbl.setText("Guardado Correctamente");
+            } else {
+                infoMassageLbl.setText("Ah ocurrido un error");
+            }
         }
+        clearForm();
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void listClientTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listClientTableMouseClicked
         listClientTable.getValueAt(listClientTable.getSelectedRow(), listClientTable.getSelectedColumn());
-        
-        clientController.getClients().get(listClientTable.getSelectedRow());
+        clientIDTxfld.setText(String.valueOf(clientController.getClients().get(listClientTable.getSelectedRow()).getId()));
+        clientNameTxfld.setText(clientController.getClients().get(listClientTable.getSelectedRow()).getName());
+        clientNumberPhoneTxfld.setText(clientController.getClients().get(listClientTable.getSelectedRow()).getPhoneNumber());
+        clientAddressTxfld.setText(clientController.getClients().get(listClientTable.getSelectedRow()).getAddress());
+        updateFlag = true;
+        tablePos = listClientTable.getSelectedRow();
+        saveBtn.setText("Modificar");
     }//GEN-LAST:event_listClientTableMouseClicked
 
+    private void clearForm(){
+        clientIDTxfld.setText("");
+        clientNameTxfld.setText("");
+        clientNumberPhoneTxfld.setText("");
+        clientAddressTxfld.setText("");
+        saveBtn.setText("Guardar");
+        updateFlag = false;
+        tablePos = -1;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -287,7 +312,7 @@ public class ClientModule extends javax.swing.JFrame {
                 });
             }
         } catch (Exception e) {
-            infoMassageLbl.setText("Error: "+e.getMessage());
+            infoMassageLbl.setText("Error: " + e.getMessage());
         }
     }
 
