@@ -58,6 +58,7 @@ public class ClientModule extends javax.swing.JFrame {
         infoMassageLbl = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         listClientTable = new javax.swing.JTable();
+        btnDelete = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -144,6 +145,15 @@ public class ClientModule extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(listClientTable);
 
+        btnDelete.setText("Delete");
+        btnDelete.setToolTipText("");
+        btnDelete.setEnabled(false);
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -175,8 +185,10 @@ public class ClientModule extends javax.swing.JFrame {
                     .addComponent(clientesRegistrados, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(227, 227, 227)
+                .addGap(126, 126, 126)
                 .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(94, 94, 94)
+                .addComponent(btnDelete)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -201,7 +213,9 @@ public class ClientModule extends javax.swing.JFrame {
                     .addComponent(clientAddressTxfld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addressClient))
                 .addGap(33, 33, 33)
-                .addComponent(saveBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveBtn)
+                    .addComponent(btnDelete))
                 .addGap(18, 18, 18)
                 .addComponent(infoMassageLbl)
                 .addGap(28, 28, 28)
@@ -253,9 +267,20 @@ public class ClientModule extends javax.swing.JFrame {
         updateFlag = true;
         tablePos = listClientTable.getSelectedRow();
         saveBtn.setText("Modificar");
+        btnDelete.setEnabled(true);
     }//GEN-LAST:event_listClientTableMouseClicked
 
-    private void clearForm(){
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        if (clientController.delete(tablePos)) {
+            refreshClientTable();
+            clearForm();
+            infoMassageLbl.setText("Se ha eliminado el usuario correctamente");
+        } else {
+           infoMassageLbl.setText("Ha ocurrido un error (Error : N14), por favor informa al soporte");
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void clearForm() {
         clientIDTxfld.setText("");
         clientNameTxfld.setText("");
         clientNumberPhoneTxfld.setText("");
@@ -263,8 +288,9 @@ public class ClientModule extends javax.swing.JFrame {
         saveBtn.setText("Guardar");
         updateFlag = false;
         tablePos = -1;
+        btnDelete.setEnabled(false);
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -318,6 +344,7 @@ public class ClientModule extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addressClient;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JTextField clientAddressTxfld;
     private javax.swing.JLabel clientID;
     private javax.swing.JTextField clientIDTxfld;

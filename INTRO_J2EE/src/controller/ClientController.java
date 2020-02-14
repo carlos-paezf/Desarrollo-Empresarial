@@ -27,6 +27,16 @@ public class ClientController {
         }
     }
     
+    public boolean delete(int id){
+        try {
+            clients.remove(id);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
     public String list(){
         /*          String clientString = "";          for(Client currentClient : clients){            clientString += currentClient.toString();          }        */
         return Arrays.toString(clients.toArray());
