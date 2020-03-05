@@ -61,7 +61,6 @@ public class ClienteDAO {
     public int actualizar(Cliente cliente) {
         int r = 0;
         String sql = "UPDATE clientes SET Nombre=?, Numero_Celular=?, Direccion=? WHERE ID=?";
-        // String sql = "UPDATE clientes (Nombre, Numero_Celular, Direccion) VALUES (?,?,?) WHERE ID=?";
         try {
             connection = conectar.getConnection();
             preparedStatement = connection.prepareStatement(sql);
