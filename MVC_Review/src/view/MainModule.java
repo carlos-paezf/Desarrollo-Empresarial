@@ -8,6 +8,7 @@ package view;
 import controller.ClientController;
 import controller.InvoiceController;
 import javax.swing.table.DefaultTableModel;
+import model.BDConnection;
 import model.Client;
 import model.Invoice;
 
@@ -21,21 +22,36 @@ public class MainModule extends javax.swing.JFrame {
     InvoiceController invController;
     DefaultTableModel tableModel;
     DefaultTableModel tableInvoiceModel;
-    boolean updateFlag; 
+    boolean updateFlag;
     int tablePos;
-    
+
     /**
      * Creates new form ClientModule
      */
     public MainModule() {
         initComponents();
-        cliController = new ClientController();
-        invController = new InvoiceController();
+
+        //Starts new BD connection
+        BDConnection connection = new BDConnection();
+        cliController = new ClientController(connection);
+        invController = new InvoiceController(connection);
+
+        //Checks if the query was succesfully executed
+        if (!cliController.index()) {
+            System.out.println("No se ejecuto la consulta");
+        }
+
         //Client table configuration
         String[] columnNames = new String[]{"ID", "Name", "Phone Number", "Address"};
         tableModel = new DefaultTableModel();
         tableModel.setColumnIdentifiers(columnNames);
         clientTable.setModel(tableModel);
+        refreshClientTable();
+
+        //Checks if the query was succesfully executed
+        if (!invController.index()) {
+            System.out.println("No se ejecuto la consulta");
+        }
         
         //Invoice table configuration
         String[] columnInvoiceNames = new String[]{"ID", "Fecha", "Cliente"};
@@ -43,6 +59,7 @@ public class MainModule extends javax.swing.JFrame {
         tableInvoiceModel.setColumnIdentifiers(columnInvoiceNames);
         invoiceTable.setModel(tableInvoiceModel);
         updateFlag = false;
+        refreshClientTable();
     }
 
     /**
@@ -317,16 +334,15 @@ public class MainModule extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(invController.create(new Object[]{
+        if (invController.create(new Object[]{
             invoicetIDTxt.getText(),
             invoiceDateTxt.getText(),
             clientListCbx.getSelectedItem()
-        })){
+        })) {
             refreshInvoiceTable();
             clearInvoiceForm();
         }
-            
-            
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void invoiceTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_invoiceTableMouseClicked
@@ -343,16 +359,16 @@ public class MainModule extends javax.swing.JFrame {
         params[Client.NAME] = clientNameTxt.getText();
         params[Client.PHONE_NUMBER] = clientPhoneTxt.getText();
         params[Client.ADDRESS] = clientAddressTxt.getText();
-        if(updateFlag){
+        if (updateFlag) {
             cliController.update(tablePos, params);
             refreshClientTable();
 
-        }else{
-            if(cliController.create(params))
-            refreshClientTable();
-
-            else
-            infoMessage.setText("Parece que ha ocurrido un error :(");
+        } else {
+            if (cliController.create(params)) {
+                refreshClientTable();
+            } else {
+                infoMessage.setText("Parece que ha ocurrido un error :(");
+            }
         }
         clearForm();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -361,20 +377,20 @@ public class MainModule extends javax.swing.JFrame {
 
         Client currentCLient = (Client) cliController.getObjectList().get(clientTable.getSelectedRow());
         clientIDTxt.setText(
-            String.valueOf(currentCLient.getId())
-            //String.valueOf(cliController.getObjectList().get(clientTable.getSelectedRow()).getId())
+                String.valueOf(currentCLient.getId())
+        //String.valueOf(cliController.getObjectList().get(clientTable.getSelectedRow()).getId())
         );
 
         clientNameTxt.setText(
-            ((Client) cliController.getObjectList().get(clientTable.getSelectedRow())).getName()
+                ((Client) cliController.getObjectList().get(clientTable.getSelectedRow())).getName()
         );
 
         clientPhoneTxt.setText(
-            ((Client) cliController.getObjectList().get(clientTable.getSelectedRow())).getPhoneNumber()
+                ((Client) cliController.getObjectList().get(clientTable.getSelectedRow())).getPhoneNumber()
         );
 
         clientAddressTxt.setText(
-            ((Client) cliController.getObjectList().get(clientTable.getSelectedRow())).getAddress()
+                ((Client) cliController.getObjectList().get(clientTable.getSelectedRow())).getAddress()
         );
 
         updateFlag = true;
@@ -384,12 +400,13 @@ public class MainModule extends javax.swing.JFrame {
     }//GEN-LAST:event_clientTableMouseClicked
 
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
-        if(cliController.delete(tablePos)){
+        if (cliController.delete(tablePos)) {
             refreshClientTable();
             clearForm();
 
-        }else
-        infoMessage.setText("Ha ocurrido un error (Error: N14), por favor informa al soporte");
+        } else {
+            infoMessage.setText("Ha ocurrido un error (Error: N14), por favor informa al soporte");
+        }
     }//GEN-LAST:event_removeBtnActionPerformed
 
     /**
@@ -427,43 +444,43 @@ public class MainModule extends javax.swing.JFrame {
             }
         });
     }
-    
-    private void refreshClientTable(){
+
+    private void refreshClientTable() {
         try {
             tableModel.setRowCount(0);
             clientListCbx.removeAllItems();
-            for(Object currentObject : cliController.getObjectList()){
+            for (Object currentObject : cliController.getObjectList()) {
                 Client currentClient = (Client) currentObject;
                 //Adds current element to the table
-                tableModel.addRow(new Object[]{currentClient.getId(),currentClient.getName(),
-                currentClient.getPhoneNumber(),currentClient.getAddress()});
-                
+                tableModel.addRow(new Object[]{currentClient.getId(), currentClient.getName(),
+                    currentClient.getPhoneNumber(), currentClient.getAddress()});
+
                 //Adds current object to combo boxe's list
                 clientListCbx.addItem(currentClient);
             }
         } catch (Exception e) {
             infoMessage.setText("Error: " + e.getMessage());
         }
-        
+
     }
-    
-    private void refreshInvoiceTable(){
+
+    private void refreshInvoiceTable() {
         try {
             tableInvoiceModel.setRowCount(0);
-            
-            for(Object currentObject : invController.getObjectList()){
+
+            for (Object currentObject : invController.getObjectList()) {
                 Invoice currentInvoice = (Invoice) currentObject;
                 //Adds current element to the table
-                tableInvoiceModel.addRow(new Object[]{currentInvoice.getId(),currentInvoice.getInvoiceDate(),
-                currentInvoice.getClient()});
+                tableInvoiceModel.addRow(new Object[]{currentInvoice.getId(), currentInvoice.getInvoiceDate(),
+                    currentInvoice.getClient()});
             }
         } catch (Exception e) {
             infoMessage.setText("Error: " + e.getMessage());
         }
-        
+
     }
-    
-    private void clearForm(){
+
+    private void clearForm() {
         clientIDTxt.setText("");
         clientNameTxt.setText("");
         clientPhoneTxt.setText("");
@@ -473,8 +490,8 @@ public class MainModule extends javax.swing.JFrame {
         tablePos = -1;
         removeBtn.setEnabled(false);
     }
-    
-    private void clearInvoiceForm(){
+
+    private void clearInvoiceForm() {
         invoicetIDTxt.setText("");
         invoiceDateTxt.setText("");
         jButton2.setText("Guardar");

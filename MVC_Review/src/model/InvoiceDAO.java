@@ -27,11 +27,10 @@ public class InvoiceDAO {
         this.cdao = new ClientDAO(connection);
     }
 
-
     /**
-     * Gets all DB clients
+     * Gets all DB invoices
      *
-     * @return clientList
+     * @return invoiceList
      */
     public List<Invoice> findAll() {
         List<Invoice> invoiceList = new ArrayList<>();
@@ -41,11 +40,12 @@ public class InvoiceDAO {
                 statement = connection.getConnection().createStatement();
                 resultSet = statement.executeQuery(sql);
                 while (resultSet.next()) {
-                    invoiceList.add(new Invoice(
-                            resultSet.getInt("id"),
-                            resultSet.getString("invoice_date"),
-                            resultSet.getDouble("total_price"),
-                            cdao.findOne(resultSet.getInt("client_id")))
+                    invoiceList.add(
+                            new Invoice(
+                                    resultSet.getInt("id"),
+                                    resultSet.getString("invoice_date"),
+                                    resultSet.getDouble("total_price"),
+                                    cdao.findOne(resultSet.getInt("client_id")))
                     );
                 }
                 statement.close();
@@ -61,7 +61,48 @@ public class InvoiceDAO {
     }
 
     /**
-     * Gets one DB clients
+     * Gets all DB invoices
+     *
+     * @return invoiceList
+     */
+    public List<Invoice> findAll2() {
+        List<Invoice> invoiceList = new ArrayList<>();
+        String sql = "SELECT inv.*, c.id AS id_client, c.name, c.phone_number, c.address "
+                + "FROM invoices AS inv, client AS c "
+                + "WHERE iv.client_id = c.id_client";
+        try {
+            if (connection.setConnection()) {
+                statement = connection.getConnection().createStatement();
+                resultSet = statement.executeQuery(sql);
+                while (resultSet.next()) {
+                    invoiceList.add(
+                            new Invoice(
+                                    resultSet.getInt("id"),
+                                    resultSet.getString("invoice_date"),
+                                    resultSet.getDouble("total_price"),
+                                    new Client(
+                                            resultSet.getInt("id_client"),
+                                            resultSet.getString("name"),
+                                            resultSet.getString("phone_number"),
+                                            resultSet.getString("address")
+                                    )
+                            )
+                    );
+                }
+                statement.close();
+                connection.closeConnection();
+            } else {
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return invoiceList;
+    }
+
+    /**
+     * Gets one DB invoices
      *
      * @param id
      */
@@ -93,7 +134,47 @@ public class InvoiceDAO {
     }
 
     /**
-     * Gets all DB clients
+     * Gets one DB invoices
+     *
+     * @param id
+     */
+    public Invoice findOne2(int id) {
+        String sql = "SELECT inv.*, c.id AS id_client, c.name, c.phone_number, c.address "
+                + "FROM invoices AS inv, client AS c "
+                + "WHERE iv.client_id = c.id_client "
+                + "AND id = " + id;
+        try {
+            if (connection.setConnection()) {
+                statement = connection.getConnection().createStatement();
+                resultSet = statement.executeQuery(sql);
+                resultSet.next();
+                Invoice invoice = new Invoice(
+                        resultSet.getInt("id"),
+                        resultSet.getString("invoice_date"),
+                        resultSet.getDouble("total_price"),
+                        new Client(
+                                resultSet.getInt("id_client"),
+                                resultSet.getString("name"),
+                                resultSet.getString("phone_number"),
+                                resultSet.getString("address")
+                        )
+                );
+                statement.close();
+                connection.closeConnection();
+                return invoice;
+
+            } else {
+                System.out.println("No se pudo conectar");
+                return null;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Gets all DB invoices
      *
      * @param invoiceDate
      * @param totalPrice
@@ -129,7 +210,7 @@ public class InvoiceDAO {
     }
 
     /**
-     * Gets all DB clients
+     * Gets all DB invoices
      *
      * @param id
      * @param invoiceDate
@@ -164,7 +245,7 @@ public class InvoiceDAO {
     }
 
     /**
-     * Gets all DB clients
+     * Gets all DB invoices
      *
      * @param id
      */
@@ -192,5 +273,5 @@ public class InvoiceDAO {
             return false;
         }
     }
-    
+
 }

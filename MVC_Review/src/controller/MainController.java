@@ -22,7 +22,7 @@ public abstract class MainController {
     
     public abstract boolean create(Object[] params);
     public abstract boolean update(int index, Object[] params);
-    
+    public abstract boolean index();
     
     public boolean delete(int id){
         try {

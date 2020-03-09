@@ -6,8 +6,10 @@
 package controller;
 
 import javax.crypto.spec.IvParameterSpec;
+import model.BDConnection;
 import model.Client;
 import model.Invoice;
+import model.InvoiceDAO;
 
 /**
  *
@@ -15,8 +17,11 @@ import model.Invoice;
  */
 public class InvoiceController extends MainController{
 
-    public InvoiceController() {
+    private InvoiceDAO invoiceDAO;
+    
+    public InvoiceController(BDConnection connection) {
         super();
+        invoiceDAO = new InvoiceDAO(connection);
     }
 
     @Override
@@ -54,6 +59,17 @@ public class InvoiceController extends MainController{
         
             return true;
         
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean index() {
+        try {
+            objectList.addAll(invoiceDAO.findAll());
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
             return false;

@@ -4,32 +4,49 @@
  * and open the template in the editor.
  */
 package controller;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import model.BDConnection;
 import model.Client;
+import model.ClientDAO;
 
 /**
  *
  * @author Estudiante
  */
-public class ClientController extends MainController{
+public class ClientController extends MainController {
 
-    public ClientController() {
+    private ClientDAO clientDAO;
+
+    public ClientController(BDConnection connection) {
         super();
+        clientDAO = new ClientDAO(connection);
     }
-    
+
+    @Override
+    public boolean index() {
+        try {
+            objectList.addAll(clientDAO.findAll());
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     @Override
     public boolean create(Object[] params) {
         try {
-            objectList.add(new Client(new Integer(params[Client.ID].toString()), params[Client.PHONE_NUMBER].toString(), 
-                params[Client.NAME].toString(), params[Client.ADDRESS].toString()));
-            
+            objectList.add(new Client(new Integer(params[Client.ID].toString()), params[Client.PHONE_NUMBER].toString(),
+                    params[Client.NAME].toString(), params[Client.ADDRESS].toString()));
+
             return true;
-        
+
         } catch (Exception e) {
             e.printStackTrace();
-            
+
             return false;
         }
     }
@@ -37,18 +54,18 @@ public class ClientController extends MainController{
     @Override
     public boolean update(int index, Object[] params) {
         try {
-            objectList.set(index, new Client(new Integer(params[Client.ID].toString()), params[Client.PHONE_NUMBER].toString(), 
-                params[Client.NAME].toString(), params[Client.ADDRESS].toString()));
-            
+            objectList.set(index, new Client(new Integer(params[Client.ID].toString()), params[Client.PHONE_NUMBER].toString(),
+                    params[Client.NAME].toString(), params[Client.ADDRESS].toString()));
+
             return true;
-        
+
         } catch (Exception e) {
             e.printStackTrace();
-            
+
             return false;
         }
     }
-    
+
     /*private List<Client> clients;
 
     public ClientController() {
@@ -101,5 +118,4 @@ public class ClientController extends MainController{
     public List<Client> getClients() {
         return clients;
     }*/
-    
 }

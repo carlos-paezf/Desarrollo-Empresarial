@@ -6,6 +6,7 @@
 package test;
 
 import controller.ClientController;
+import model.BDConnection;
 import model.Client;
 
 /**
@@ -14,8 +15,9 @@ import model.Client;
  */
 public class ClientTests {
     public static void main(String[] args) {
+        BDConnection connection = new BDConnection();
         
-        ClientController cliController = new ClientController();
+        ClientController cliController = new ClientController(connection);
         String[] params = new String[4];
         params[Client.ID] = "1";
         params[Client.NAME] = "Andres";

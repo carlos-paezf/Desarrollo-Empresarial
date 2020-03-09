@@ -35,7 +35,7 @@ public class BDTest {
 //        } else {
 //            System.out.println("Fallo inseción");
 //        }
-       double  tP = 20;
+/*       double  tP = 20;
         if (idao.update(2, "4444-12-12 01:20:05", tP, 1)) {
             Invoice invoice = idao.findOne(2);
             System.out.println(invoice.toString());
@@ -56,5 +56,7 @@ public class BDTest {
         }else{
             System.out.println("Error");
         }
+         */
     }
+
 }

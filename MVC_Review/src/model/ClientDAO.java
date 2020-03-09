@@ -17,11 +17,11 @@ import java.util.List;
  */
 public class ClientDAO {
 
-    private ResultSet rs;
-    private BDConnection con;
+    private ResultSet resultSet;
+    private BDConnection connection;
 
-    public ClientDAO(BDConnection con) {
-        this.con = con;
+    public ClientDAO(BDConnection connection) {
+        this.connection = connection;
     }
 
     /**
@@ -37,23 +37,23 @@ public class ClientDAO {
 
         try {
             //Checks if connection was stablished
-            if (con.setConnection()) {
-                Statement st = con.getConnection().createStatement();
-                rs = st.executeQuery(sql);
+            if (connection.setConnection()) {
+                Statement st = connection.getConnection().createStatement();
+                resultSet = st.executeQuery(sql);
 
                 //Iterates result set to parse data
-                while (rs.next()) {
+                while (resultSet.next()) {
                     clientList.add(new Client(
-                            rs.getInt("id"),
-                            rs.getString("phone_number"),
-                            rs.getString("name"),
-                            rs.getString("address"))
+                            resultSet.getInt("id"),
+                            resultSet.getString("phone_number"),
+                            resultSet.getString("name"),
+                            resultSet.getString("address"))
                     );
                 }
 
                 //Closes current connection
                 st.close();
-                con.closeConnection();
+                connection.closeConnection();
 
             } else {
                 System.out.println("No se pudo conectar ");
@@ -76,20 +76,20 @@ public class ClientDAO {
         String sql = "SELECT * FROM client WHERE id = " + id;
         try {
             //Checks if connection was stablished
-            if (con.setConnection()) {
-                Statement st = con.getConnection().createStatement();
-                rs = st.executeQuery(sql);
-                rs.next();
+            if (connection.setConnection()) {
+                Statement st = connection.getConnection().createStatement();
+                resultSet = st.executeQuery(sql);
+                resultSet.next();
 
                 Client client = new Client(
-                        rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getString("phone_number"),
-                        rs.getString("address")
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("phone_number"),
+                        resultSet.getString("address")
                 );
 
                 st.close();
-                con.closeConnection();
+                connection.closeConnection();
 
                 return client;
 
@@ -119,13 +119,13 @@ public class ClientDAO {
                 + address + "');";
         try {
             //Checks if connection was stablished
-            if (con.setConnection()) {
-                Statement st = con.getConnection().createStatement();
+            if (connection.setConnection()) {
+                Statement st = connection.getConnection().createStatement();
 
                 int resposenCode = st.executeUpdate(sql);
 
                 st.close();
-                con.closeConnection();
+                connection.closeConnection();
 
                 if (resposenCode == 1) {
                     return true;
@@ -160,13 +160,13 @@ public class ClientDAO {
                 + address + "' WHERE  id = " + id;
         try {
             //Checks if connection was stablished
-            if (con.setConnection()) {
-                Statement st = con.getConnection().createStatement();
+            if (connection.setConnection()) {
+                Statement st = connection.getConnection().createStatement();
 
                 int resposenCode = st.executeUpdate(sql);
 
                 st.close();
-                con.closeConnection();
+                connection.closeConnection();
 
                 if (resposenCode == 1) {
                     return true;
@@ -193,11 +193,11 @@ public class ClientDAO {
     public boolean delete(int id) {
         String sql = "DELETE FROM invoice WHERE ID=" + id + "";
         try {
-            if (con.setConnection()) {
-                Statement st= con.getConnection().createStatement();
+            if (connection.setConnection()) {
+                Statement st= connection.getConnection().createStatement();
                 int resposenCode = st.executeUpdate(sql);
                 st.close();
-                con.closeConnection();
+                connection.closeConnection();
 
                 if (resposenCode == 1) {
                     return true;
