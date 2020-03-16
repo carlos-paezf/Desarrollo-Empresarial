@@ -18,15 +18,19 @@ import java.util.logging.Logger;
  * @author David Ferrer
  */
 public class DBTest {
-     public static void main(String[] args) {
-         DBSession dBSession = new DBSession();
-         dBSession.persistenceCreate();
-         ClientModel clientModel = new ClientModel();
-         try {
-             List<Client> clients = clientModel.findAll("Client");
-             System.out.println(Arrays.toString(clients.toArray()));
-         } catch (Exception ex) {
-             ex.printStackTrace();
-         }
+
+    public static void main(String[] args) {
+        //DBSession dBSession = new DBSession();
+        DBSession.persistenceCreate();
+        ClientModel clientModel = new ClientModel();
+        try {
+            Client c = new Client(9, "El nuevo", "320", "Calle Falsa 123");
+            clientModel.create(c, true);
+            List<Client> clients = clientModel.findAll("Client");
+            System.out.println(Arrays.toString(clients.toArray()));
+            System.err.println(clientModel.findOne("Client", 9));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }

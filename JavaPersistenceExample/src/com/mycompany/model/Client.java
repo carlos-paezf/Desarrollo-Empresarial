@@ -20,7 +20,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "client")
 @NamedQueries({
-    @NamedQuery(name = "Client.findAll", query = "SELECT c FROM Client c")
+    @NamedQuery(name = "Client.findAll", query = "SELECT c FROM Client c"),
+    @NamedQuery(name="Client.findOne", query="SELECT c FROM Client c WHERE c.id = :id")
 })
 public class Client implements Serializable {
 
