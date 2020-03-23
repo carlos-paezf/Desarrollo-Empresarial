@@ -3,15 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.model;
+package model;
 
 import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import javax.persistence.*;
 
 /**
  *
@@ -21,7 +19,7 @@ import javax.persistence.Table;
 @Table(name = "client")
 @NamedQueries({
     @NamedQuery(name = "Client.findAll", query = "SELECT c FROM Client c"),
-    @NamedQuery(name="Client.findOne", query="SELECT c FROM Client c WHERE c.id = :id")
+    @NamedQuery(name = "Client.findOne", query = "SELECT c FROM Client c WHERE c.id = :id")
 })
 public class Client implements Serializable {
 
@@ -35,7 +33,11 @@ public class Client implements Serializable {
     @Column(name = "address")
     private String address;
 
+    @OneToMany(mappedBy = "clientId", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private List<Invoice> invoices;
+
     public Client() {
+        this.invoices = new ArrayList<>();
     }
 
     public Client(int id, String name, String phoneNumber, String address) {
@@ -43,6 +45,7 @@ public class Client implements Serializable {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.address = address;
+        this.invoices = new ArrayList<>();
     }
 
     public int getId() {
@@ -77,9 +80,17 @@ public class Client implements Serializable {
         this.address = address;
     }
 
+    public List<Invoice> getInvoices() {
+        return invoices;
+    }
+
+    public void setInvoices(List<Invoice> invoices) {
+        this.invoices = invoices;
+    }
+
     @Override
     public String toString() {
-        return "Client{" + "id=" + id + ", name=" + name + ", phoneNumber=" + phoneNumber + ", address=" + address + '}';
+        return "Client{" + "id=" + id + ", name=" + name + ", phoneNumber=" + phoneNumber + ", address=" + address + '}' + "\n";
     }
 
 }
