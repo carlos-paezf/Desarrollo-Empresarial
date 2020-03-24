@@ -14,6 +14,7 @@ import javax.persistence.Persistence;
  * @author David Ferrer
  */
 public class DBSession {
+    
     private static EntityManager entityManager;
     
     public static void persistenceCreate(){

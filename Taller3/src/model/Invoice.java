@@ -21,6 +21,7 @@ import javax.persistence.*;
 public class Invoice implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
     @Column(name = "invoice_date")
@@ -41,6 +42,12 @@ public class Invoice implements Serializable {
         this.clientId = clientId;
     }
 
+    public Invoice(String invoiceDate, double totalPrice, Client clientId) {
+        this.invoiceDate = invoiceDate;
+        this.totalPrice = totalPrice;
+        this.clientId = clientId;
+    }
+    
     public int getId() {
         return id;
     }

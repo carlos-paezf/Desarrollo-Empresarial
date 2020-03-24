@@ -24,6 +24,7 @@ import javax.persistence.*;
 public class Client implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
     @Column(name = "name")
@@ -48,6 +49,13 @@ public class Client implements Serializable {
         this.invoices = new ArrayList<>();
     }
 
+    public Client(String name, String phoneNumber, String address) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+    }
+
+    
     public int getId() {
         return id;
     }
