@@ -25,17 +25,21 @@ public class Client implements Serializable {
     @Column(name = "id_client")
     private int idClient;
     @OneToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "document_client_fk", referencedColumnName = "document")
-    private Person document;
+    @JoinColumn(name = "document_person", referencedColumnName = "document")
+    private Person documentPerson;
     
     public Client() {
     }
 
     public Client(int idClient, Person document) {
         this.idClient = idClient;
-        this.document = document;
+        this.documentPerson = document;
     }
 
+    public Client(Person document) {
+        this.documentPerson = document;
+    }
+    
     public int getIdClient() {
         return idClient;
     }
@@ -44,17 +48,17 @@ public class Client implements Serializable {
         this.idClient = idClient;
     }
 
-    public Person getDocument() {
-        return document;
+    public Person getDocumentPerson() {
+        return documentPerson;
     }
 
-    public void setDocument(Person document) {
-        this.document = document;
+    public void setDocumentPerson(Person documentPerson) {
+        this.documentPerson = documentPerson;
     }
 
     @Override
     public String toString() {
-        return "Client{" + "idClient=" + idClient + ", document=" + document.getDocument() + '}';
+        return "Client{" + "idClient=" + idClient + ", document=" + documentPerson.getDocument() + '}' + "\n";
     }
     
 }

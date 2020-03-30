@@ -3,7 +3,14 @@
   <persistence-unit name="Veterinary_ClinicPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>model.Person</class>
+    <class>model.Animal</class>
     <class>model.Client</class>
+    <class>model.Veterinarian</class>
+    <class>model.Address</class>
+    <class>model.MedicalTreatment</class>
+    <class>model.Medicine</class>
+    <class>model.Pet</class>
+    <class>model.StrayAnimal</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/veterinary_clinic?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

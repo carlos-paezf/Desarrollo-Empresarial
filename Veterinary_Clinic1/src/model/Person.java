@@ -21,14 +21,13 @@ import javax.persistence.*;
 public class Person implements Serializable{
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="document")
     private int document;
     @Column(name="name_surname")
     private String nameSurname;
     @Column(name="phone_number")
     private int phoneNumber;
-    @Column(name="e-mail")
+    @Column(name="email")
     private String email;
     @Column(name="address")
     private String address;

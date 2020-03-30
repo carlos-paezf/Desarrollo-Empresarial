@@ -57,10 +57,10 @@ public abstract class AbstractModel {
             entityManager.getTransaction().commit();
     }
     
-    public void delete(Object object, boolean isFinal) throws Exception {
+    public void delete(String className, int id) throws Exception {
         if(!entityManager.getTransaction().isActive())
             entityManager.getTransaction().begin();
-        entityManager.remove(object);
+        entityManager.remove(findOne(className, id));
     }
 
 }
