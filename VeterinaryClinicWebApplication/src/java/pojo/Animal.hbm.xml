@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16/04/2020 05:01:38 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.Animal" table="animal" catalog="veterinary_clinic" optimistic-lock="version">
+        <id name="idAnimal" type="java.lang.Integer">
+            <column name="id_animal" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="address" class="pojo.Address" fetch="select">
+            <column name="found_in" />
+        </many-to-one>
+        <many-to-one name="medicalTreatment" class="pojo.MedicalTreatment" fetch="select">
+            <column name="id_treatment" not-null="true" />
+        </many-to-one>
+        <many-to-one name="person" class="pojo.Person" fetch="select">
+            <column name="id_client_owner" />
+        </many-to-one>
+        <property name="updateVaccines" type="boolean">
+            <column name="update_vaccines" not-null="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="name" length="50" />
+        </property>
+        <property name="age" type="string">
+            <column name="age" length="20" not-null="true" />
+        </property>
+        <property name="species" type="int">
+            <column name="species" not-null="true" />
+        </property>
+        <property name="breed" type="int">
+            <column name="breed" not-null="true" />
+        </property>
+        <property name="admissionDate" type="int">
+            <column name="admission_date" not-null="true" />
+        </property>
+        <property name="departureDate" type="java.lang.Integer">
+            <column name="departure_date" />
+        </property>
+        <property name="animalType" type="int">
+            <column name="animalType" not-null="true" />
+        </property>
+        <set name="persons" table="person" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_rescued_pet" />
+            </key>
+            <one-to-many class="pojo.Person" />
+        </set>
+        <set name="invoices" table="invoice" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_animal" not-null="true" />
+            </key>
+            <one-to-many class="pojo.Invoice" />
+        </set>
+    </class>
+</hibernate-mapping>

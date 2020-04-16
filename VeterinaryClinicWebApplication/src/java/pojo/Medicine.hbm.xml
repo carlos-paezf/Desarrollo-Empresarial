@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16/04/2020 05:01:38 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.Medicine" table="medicine" catalog="veterinary_clinic" optimistic-lock="version">
+        <id name="idMedicine" type="java.lang.Integer">
+            <column name="id_medicine" />
+            <generator class="identity" />
+        </id>
+        <property name="barcode" type="int">
+            <column name="barcode" not-null="true" />
+        </property>
+        <property name="nameMedicine" type="string">
+            <column name="name_medicine" length="50" not-null="true" />
+        </property>
+        <property name="quantityInWarehouse" type="int">
+            <column name="quantity_in_warehouse" not-null="true" />
+        </property>
+        <property name="expirationDate" type="date">
+            <column name="expiration_date" length="10" not-null="true" />
+        </property>
+        <property name="manufacturer" type="string">
+            <column name="manufacturer" length="50" not-null="true" />
+        </property>
+        <set name="medicalTreatments" table="medical_treatment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_medicine" />
+            </key>
+            <one-to-many class="pojo.MedicalTreatment" />
+        </set>
+    </class>
+</hibernate-mapping>

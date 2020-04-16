@@ -1,0 +1,81 @@
+NOTA: En este archivo se han omitido los acentos y letras propias del idioma
+Espanol, ya que estos se representan en forma diferente en cada sistema
+operativo.
+
+Bienvenido al CD-ROM companero del libro "Biblioteca del Programador en Java".
+Para dar mayor difusion a este CD-ROM, se encuentran incluidos aqui tanto
+los archivos en su forma original, como empacados en diferentes formas. Esto
+se debe a que el formato estandar de CD-ROM, el ISO 9660, solamente soporta
+nombres de 8 caracteres, seguidos de un punto y 3 caracteres como extension.
+Diferentes sistemas operativos utilizan diferentes metodos para poder leer
+nombres largos. Debido a esto, se han incluido, por una parte, un directorio
+legible directamente del CD-ROM (para los sistemas que soportan nombres
+largos), y archivos con nombres cortos los cuales puedan ser desempacados
+en el disco duro local del usuario.
+
+Para verificar si su sistema reconoce los nombres largos, vea el contenido
+del directorio o carpeta "cap02" dentro del directorio "Libro". Encontrara
+dos archivos con los siguientes nombres:
+
+    hola_java.class
+    hola_java.java
+
+si su sistema soporta los nombres largos. En caso de que los nombres de los
+archivos no sean exactamente los mostrados arriba, su sistema no soporta los
+nombres largos del CD-ROM, por lo que tendra que desempacar los archivos en
+su disco duro local (vea mas adelante las instrucciones para los archivos
+"Libro.cpz" y "Libro.zip", el primero para sistemas Unix y el segundo para
+otros sistemas).
+
+En este directorio se pueden encontrar los siguientes archivos y directorios:
+
+0. LEAME.txt - Este archivo
+
+1. JDK-102 - Contiene el Kit de Desarrollo de Java version 1.0.2 para las
+             siguientes plataformas:
+
+     MacOS.bin            - MacOS (formato sea.bin)
+     MacOS.hqx            - MacOS (formato sea.hqx)
+     solsparc.taz         - Solaris para SPARC
+     sol-x86.taz          - Solaris para Intel
+     win32.exe            - Windows 95 / NT (formato .EXE)
+     win32.taz            - Windows 95 / NT (formato .tar.Z)
+     README.txt           - Archivo README del JDK
+     LICENSE.txt          - Licencia del JDK
+
+     Los nombres de estos archivos han sido recortados de sus originales,
+     de forma que puedan ser leidos en cualquier plataforma soporte o no
+     los nombres largos. Si descarga el JDK directamente desde el sitio
+     de Web de Sun, los archivos tendran nombres diferentes.
+
+     En caso de que su plataforma no se encuentre dentro de las anteriores,
+     puede accesar al sitio de Web de los "ports" del JDK a otras
+     plataformas, donde encontrara ligas a los sitios de Web desde donde
+     podra descargar el JDK para su plataforma. El URL es el siguiente:
+
+                http://java.sun.com/products/JDK/jdk-ports.html    
+
+2. Libro - Contiene el codigo fuente, objeto y los archivos .gif y .au
+           correspondientes al libro. Este directorio puede ser utilizado
+           directamente si su equipo reconoce los nombres largos contenidos
+           en este CD-ROM.
+
+3. Libro.zip - Contiene el contenido completo del directorio "Libro", en
+               formato .ZIP. Desempaque este archivo utilizando WinZip95
+               o algun otro descompactador que respete los nombres largos
+               dentro de los archivos .ZIP. Este archivo se incluye para
+               aquellas plataformas que no puedan leer los nombres largos
+               directamente del CD-ROM.
+
+4. Libro.cpz - Contiene el contenido completo del directorio "Libro", en
+               formato .CPIO.Z, para aquellos sistemas Unix que no puedan leer
+               los nombres largos directamente de este CD-ROM. Desempaque
+               este archivo utilizando la siguiente secuencia de comandos:
+
+                 $ cd <directorio donde desempacar>
+                 $ zcat <directorio CD-ROM>/Libro.cpz | cpio -idmuv
+
+               Donde <directorio donde desempacar> es el directorio donde
+               desea sean desempacados los archivos del libro, y
+               <directorio CD-ROM> es el nombre del directorio donde se
+               encuentra montado el CD-ROM.
