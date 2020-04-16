@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 3, 2020 9:23:41 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.Product" table="product" catalog="mvc_review" optimistic-lock="version">
+        <id name="barcode" type="int">
+            <column name="barcode" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="65535" />
+        </property>
+        <property name="sellPrice" type="double">
+            <column name="sell_price" precision="22" scale="0" not-null="true" />
+        </property>
+        <set name="invoices" table="product_detail" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="product_barcode" not-null="true" />
+            </key>
+            <many-to-many entity-name="pojo.Invoice">
+                <column name="invoice_id" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
