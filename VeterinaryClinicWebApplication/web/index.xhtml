@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Page with |Facelet</title>
+        <link rel="icon" type="EscudoUsta/png" href="img/EscudoUsta.png" sizes="64x64"></link>
+    </h:head>
+
+    <h:body>
+        <div align="center" >
+            <p /><br />
+            <img src="img/ustaini.png" width="600" height="90" />
+        </div>
+        <h1 align="center">My App with JSF!!!</h1>
+
+        <div align="center">
+            <h:form>
+                <h:dataTable class="table-class" value="#{personManagedBean.index()}" var="p" border="1">
+
+                    <h:column>
+                        <f:facet name="header"> ID Person </f:facet>
+                        <h:outputText value="#{p.idPerson}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header"> Document </f:facet>
+                        <h:outputText value="#{p.document}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header"> Name </f:facet>
+                        <h:outputText value="#{p.name}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header"> Surname </f:facet>
+                        <h:outputText value="#{p.surname}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header"> Phone Number </f:facet>
+                        <h:outputText value="#{p.phoneNumber}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header"> E-Mail </f:facet>
+                        <h:outputText value="#{p.email}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header"> Id Address </f:facet>
+                        <h:outputText value="#{p.address}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header"> Professional Card </f:facet>
+                        <h:outputText value="#{p.professionalCard}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header"> Medical Specility </f:facet>
+                        <h:outputText value="#{p.medicalSpeciality}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header"> Work Shift </f:facet>
+                        <h:outputText value="#{p.workShift}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header"> Arrival Turn </f:facet>
+                        <h:outputText value="#{p.arrivalTurn}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header"> Id Rescued Pet </f:facet>
+                        <h:outputText value="#{p.animal}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header"> Person Type </f:facet>
+                        <h:outputText value="#{p.personType}" />
+                    </h:column>
+
+                </h:dataTable>
+            </h:form>
+        </div>
+    </h:body>
+</html>
+
