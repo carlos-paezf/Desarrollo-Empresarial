@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16/04/2020 05:01:38 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.MedicalTreatment" table="medical_treatment" catalog="veterinary_clinic" optimistic-lock="version">
+        <id name="idMedicalTreatment" type="java.lang.Integer">
+            <column name="id_medical_treatment" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="address" class="pojo.Address" fetch="select">
+            <column name="place_realization" />
+        </many-to-one>
+        <many-to-one name="medicine" class="pojo.Medicine" fetch="select">
+            <column name="id_medicine" />
+        </many-to-one>
+        <property name="nameTreatment" type="string">
+            <column name="name_treatment" length="50" not-null="true" />
+        </property>
+        <property name="turnOfSacrifice" type="java.lang.Integer">
+            <column name="turn_of_sacrifice" />
+        </property>
+        <property name="price" type="float">
+            <column name="price" precision="12" scale="0" not-null="true" />
+        </property>
+        <set name="invoices" table="invoice" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_medical_treatment" not-null="true" />
+            </key>
+            <one-to-many class="pojo.Invoice" />
+        </set>
+        <set name="animals" table="animal" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_treatment" not-null="true" />
+            </key>
+            <one-to-many class="pojo.Animal" />
+        </set>
+    </class>
+</hibernate-mapping>
