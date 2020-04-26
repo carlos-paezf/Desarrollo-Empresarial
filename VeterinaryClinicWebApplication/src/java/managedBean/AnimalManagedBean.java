@@ -9,36 +9,36 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
-import model.PersonModel;
-import pojo.Person;
+import model.AnimalModel;
+import pojo.Animal;
 
 /**
  *
  * @author David Ferrer
  */
-@Named(value = "personManagedBean")
+@Named(value = "animalManagedBean")
 @RequestScoped
-public class PersonManagedBean {
+public class AnimalManagedBean {
 
     //Attributes
-    private final PersonModel model;
-    private Person person;
+    private final AnimalModel model;
+    private Animal animal;
     private int filterID;
 
     /**
-     * Creates a new instance of PersonManagedBean
+     * Creates a new instance of AnimalManagedBean
      */
-    public PersonManagedBean() {
-        model = new PersonModel();
-        person = new Person();
+    public AnimalManagedBean() {
+        model = new AnimalModel();
+        animal = new Animal();
     }
 
     /**
      * Returns the list of all stored in DB
      *
-     * @return person list
+     * @return animal list
      */
-    public List<Person> index() {
+    public List<Animal> index() {
         try {
 
             return model.findAll();
@@ -50,13 +50,13 @@ public class PersonManagedBean {
     }
 
     /**
-     * Persist new Person to DB
+     * Persist new Animal to DB
      *
-     * @return person list
+     * @return animal list
      */
     public String save() {
         try {
-            model.save(person);
+            model.save(animal);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -64,13 +64,13 @@ public class PersonManagedBean {
     }
     
     /**
-     * Find Person by ID
+     * Find Animal by ID
      *
-     * @return person list
+     * @return animal list
      */
     public String findById(){
         try {
-            person = (Person) model.findById(filterID);
+            animal = (Animal) model.findById(filterID);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -78,24 +78,24 @@ public class PersonManagedBean {
     }
 
         /**
-     * Delete Person to DB
+     * Delete Animal to DB
      *
-     * @return person list
+     * @return Animal list
      */
     public String delete() {
         try {
-            model.delete(person);
+            model.delete(animal);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return "index";
     }
-    public Person getPerson() {
-        return person;
+    public Animal getAnimal() {
+        return animal;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setAnimal(Animal animal) {
+        this.animal = animal;
     }
 
     public String getMessage() {
@@ -109,6 +109,7 @@ public class PersonManagedBean {
     public void setFilterID(int filterID) {
         this.filterID = filterID;
     }
+    
     
     
 }

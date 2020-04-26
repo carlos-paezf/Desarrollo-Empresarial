@@ -9,10 +9,10 @@ package model;
  *
  * @author David Ferrer
  */
-public class PersonModel extends AbstractModel{
-    
-    public PersonModel() {
-        super("Person");
+public class AnimalModel extends AbstractModel{
+
+    public AnimalModel() {
+        super("Animal");
     }
-    
+ 
 }

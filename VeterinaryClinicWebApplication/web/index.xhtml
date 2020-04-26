@@ -6,7 +6,7 @@
 
     <h:head>
         <title>Page with |Facelet</title>
-        <link rel="shortcut icon" href="resources/assets/images/gt_favicon.png"/>
+        <link rel="shortcut icon" href="resources/assets/images/EscudoUsta.png"/>
 
         <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700"/>
         <link rel="stylesheet" href="resources/assets/css/bootstrap.min.css"/>
@@ -25,7 +25,7 @@
                 <div class="navbar-header">
                     <!-- Button for smallest screens -->
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                    <a class="navbar-brand" href="index.xhtml"><img src="resources/assets/images/logo.png" alt="Progressus HTML5 template" /></a>
+                    <a class="navbar-brand" href="index.xhtml"><img src="resources/assets/images/logo.png" alt="Veterinary Clinic" /></a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav pull-right">
@@ -62,8 +62,9 @@
         <div class="container">
 
             <ol class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
-                <li class="active">Registration</li>
+                <li><a href="2.html">Home</a></li>
+                <li class="active">List of Persons</li>
+                <li class="active">List of Animals</li>
             </ol>
 
             <div class="row">
@@ -71,15 +72,239 @@
                 <!-- Article main content -->
                 <article class="col-xs-12 maincontent">
                     <header class="page-header">
-                        <h1 class="page-title">Registration</h1>
+                        <h1 class="page-title">List of Persons</h1>
                     </header>
 
                     <div class="col-md-12 col-md-offset-0 col-sm-0 col-sm-offset-1">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <h3 class="thin text-center">List of Persons</h3>
-                                <p class="text-center text-muted">No me sale la tabla ahgahgahgahga </p>
-                                <hr></hr>
+                                <h3 class="thin text-center">List of Clients</h3>
+                                <p class="text-center text-muted"> Client list registered in the database </p>
+
+
+                                <div class="col-md-5 col-md-offset-0 col-sm-0 col-sm-offset-1">
+                                    <h3 class="thin text-center">Find Client by ID</h3>
+                                    <p class="text-center text-muted"> Client list registered in the database </p>
+                                    <h:form>
+                                        <h:panelGrid>
+                                            <h:outputText value="Find Client by ID"></h:outputText>
+                                            <h:inputText value="#{personManagedBean.filterID}"></h:inputText>
+                                            <h:commandButton value="Search" action="#{personManagedBean.findById()}"></h:commandButton>
+                                        </h:panelGrid>
+                                    </h:form>
+                                </div>
+
+                                <div class="col-md-7 col-md-offset-0 col-sm-0 col-sm-offset-1">
+                                    <h3 class="thin text-center">Create or Update a new Client</h3>
+                                    <h:form>
+                                        <h:panelGrid>
+                                            <h:outputText value="Document: "></h:outputText>
+                                            <h:inputText value="#{personManagedBean.person.document}"/>
+                                            <h:outputText value="Name:"></h:outputText>
+                                            <h:inputText value="#{personManagedBean.person.name}"/>
+                                            <h:outputText value="Surname:"></h:outputText>
+                                            <h:inputText value="#{personManagedBean.person.surname}"/>
+                                            <h:outputText value="Phone Number:"></h:outputText>
+                                            <h:inputText value="#{personManagedBean.person.phoneNumber}"/>
+                                            <h:outputText value="E-mail:"></h:outputText>
+                                            <h:inputText value="#{personManagedBean.person.email}"/>
+                                            <h:outputText value="Id Address:"></h:outputText>
+                                            <h:inputText value="#{personManagedBean.person.address}"/>
+                                            <h:outputText value="Arrival Turn:"></h:outputText>
+                                            <h:inputText value="#{personManagedBean.person.arrivalTurn}"/>
+                                            <h:commandButton value="Save" action="#{personManagedBean.save()}"></h:commandButton>
+                                            <h:commandButton value="Delete" action="#{personManagedBean.delete()}"></h:commandButton>
+                                        </h:panelGrid>
+                                    </h:form>
+                                </div>
+
+                                <h:form>
+                                    <h:dataTable  width="100%" class="table-class" value="#{personManagedBean.index()}" var="p" border="1">
+                                        <h:column>
+                                            <f:facet name="header"> ID Person </f:facet>
+                                            <h:outputText value="#{p.idPerson}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Document </f:facet>
+                                            <h:outputText value="#{p.document}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Name </f:facet>
+                                            <h:outputText value="#{p.name}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Surname </f:facet>
+                                            <h:outputText value="#{p.surname}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Phone Number </f:facet>
+                                            <h:outputText value="#{p.phoneNumber}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> E-Mail </f:facet>
+                                            <h:outputText value="#{p.email}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Id Address </f:facet>
+                                            <h:outputText value="#{p.address}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Arrival Turn </f:facet>
+                                            <h:outputText value="#{p.arrivalTurn}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Person Type </f:facet>
+                                            <h:outputText value="#{p.personType}" />
+                                        </h:column>
+                                    </h:dataTable>
+                                </h:form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 col-md-offset-0 col-sm-0 col-sm-offset-1">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <h3 class="thin text-center">List of Veterinarians</h3>
+                                <p class="text-center text-muted"> Veterinarian list registered in the database </p>
+
+                                <div class="col-md-5 col-md-offset-0 col-sm-0 col-sm-offset-1">
+                                    <h3 class="thin text-center">Find Veterinarian by ID</h3>
+                                    <p class="text-center text-muted"> Veterinarian list registered in the database </p>
+                                    <h:form>
+                                        <h:panelGrid>
+                                            <h:outputText value="Find Veterinarian by ID"></h:outputText>
+                                            <h:inputText value="#{personManagedBean.filterID}"></h:inputText>
+                                            <h:commandButton value="Search" action="#{personManagedBean.findById()}"></h:commandButton>
+                                        </h:panelGrid>
+                                    </h:form>
+                                </div>
+
+                                <div class="col-md-7 col-md-offset-0 col-sm-0 col-sm-offset-1">
+                                    <h3 class="thin text-center">Create or Update a new Veterinarian</h3>
+                                    <h:form>
+                                        <h:panelGrid>
+                                            <h:outputText value="Document: "></h:outputText>
+                                            <h:inputText value="#{personManagedBean.person.document}"/>
+                                            <h:outputText value="Name:"></h:outputText>
+                                            <h:inputText value="#{personManagedBean.person.name}"/>
+                                            <h:outputText value="Surname:"></h:outputText>
+                                            <h:inputText value="#{personManagedBean.person.surname}"/>
+                                            <h:outputText value="Phone Number:"></h:outputText>
+                                            <h:inputText value="#{personManagedBean.person.phoneNumber}"/>
+                                            <h:outputText value="E-mail:"></h:outputText>
+                                            <h:inputText value="#{personManagedBean.person.email}"/>
+                                            <h:outputText value="Id Address:"></h:outputText>
+                                            <h:inputText value="#{personManagedBean.person.address}"/>
+                                            <h:outputText value="Profesional Card:"></h:outputText>
+                                            <h:inputText value="#{personManagedBean.person.professionalCard}"/>
+                                            <h:outputText value="Medical Speciality:"></h:outputText>
+                                            <h:inputText value="#{personManagedBean.person.medicalSpeciality}"/>
+                                            <h:outputText value="Work Shift:"></h:outputText>
+                                            <h:inputText value="#{personManagedBean.person.workShift}"/>
+                                            <h:commandButton value="Save" action="#{personManagedBean.save()}"></h:commandButton>
+                                            <h:commandButton value="Delete" action="#{personManagedBean.delete()}"></h:commandButton>
+                                        </h:panelGrid>
+                                    </h:form>
+                                </div>
+
+                                <h:form>
+                                    <h:dataTable  width="100%" class="table-class" value="#{personManagedBean.index()}" var="p" border="1">
+                                        <h:column>
+                                            <f:facet name="header"> ID Person </f:facet>
+                                            <h:outputText value="#{p.idPerson}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Document </f:facet>
+                                            <h:outputText value="#{p.document}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Name </f:facet>
+                                            <h:outputText value="#{p.name}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Surname </f:facet>
+                                            <h:outputText value="#{p.surname}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Phone Number </f:facet>
+                                            <h:outputText value="#{p.phoneNumber}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> E-Mail </f:facet>
+                                            <h:outputText value="#{p.email}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Id Address </f:facet>
+                                            <h:outputText value="#{p.address}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Professional Card </f:facet>
+                                            <h:outputText value="#{p.professionalCard}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Medical Specility </f:facet>
+                                            <h:outputText value="#{p.medicalSpeciality}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Work Shift </f:facet>
+                                            <h:outputText value="#{p.workShift}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Person Type </f:facet>
+                                            <h:outputText value="#{p.personType}" />
+                                        </h:column>
+                                    </h:dataTable>
+                                </h:form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 col-md-offset-0 col-sm-0 col-sm-offset-1">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <h3 class="thin text-center">List of Adopters</h3>
+                                <p class="text-center text-muted"> Adopter list registered in the database </p>
+
+                                <div class="col-md-5 col-md-offset-0 col-sm-0 col-sm-offset-1">
+                                    <h3 class="thin text-center">Find Adopter by ID</h3>
+                                    <p class="text-center text-muted"> Adopter list registered in the database </p>
+                                    <h:form>
+                                        <h:panelGrid>
+                                            <h:outputText value="Find Adopter by ID"></h:outputText>
+                                            <h:inputText value="#{personManagedBean.filterID}"></h:inputText>
+                                            <h:commandButton value="Search" action="#{personManagedBean.findById()}"></h:commandButton>
+                                        </h:panelGrid>
+                                    </h:form>
+                                </div>
+
+                                <div class="col-md-7 col-md-offset-0 col-sm-0 col-sm-offset-1">
+                                    <h3 class="thin text-center">Create or Update a new Veterinarian</h3>
+                                    <h:form>
+                                        <h:panelGrid>
+                                             <h:outputText value="Document: "></h:outputText>
+                                            <h:inputText value="#{personManagedBean.person.document}"/>
+                                            <h:outputText value="Name:"></h:outputText>
+                                            <h:inputText value="#{personManagedBean.person.name}"/>
+                                            <h:outputText value="Surname:"></h:outputText>
+                                            <h:inputText value="#{personManagedBean.person.surname}"/>
+                                            <h:outputText value="Phone Number:"></h:outputText>
+                                            <h:inputText value="#{personManagedBean.person.phoneNumber}"/>
+                                            <h:outputText value="E-mail:"></h:outputText>
+                                            <h:inputText value="#{personManagedBean.person.email}"/>
+                                            <h:outputText value="Id Address:"></h:outputText>
+                                            <h:inputText value="#{personManagedBean.person.address}"/>
+                                            <h:outputText value="Id Rescued Pet:"></h:outputText>
+                                            <h:inputText value="#{personManagedBean.person.animal}"/>
+                                            <h:outputText value="Arrival Turn:"></h:outputText>
+                                            <h:inputText value="#{personManagedBean.person.arrivalTurn}"/>
+                                            <h:commandButton value="Save" action="#{personManagedBean.save()}"></h:commandButton>
+                                            <h:commandButton value="Delete" action="#{personManagedBean.delete()}"></h:commandButton>
+                                        </h:panelGrid>
+                                    </h:form>
+                                </div>
 
                                 <h:form>
                                     <h:dataTable  width="100%" class="table-class" value="#{personManagedBean.index()}" var="p" border="1">
@@ -120,21 +345,6 @@
                                         </h:column>
 
                                         <h:column>
-                                            <f:facet name="header"> Professional Card </f:facet>
-                                            <h:outputText value="#{p.professionalCard}" />
-                                        </h:column>
-
-                                        <h:column>
-                                            <f:facet name="header"> Medical Specility </f:facet>
-                                            <h:outputText value="#{p.medicalSpeciality}" />
-                                        </h:column>
-
-                                        <h:column>
-                                            <f:facet name="header"> Work Shift </f:facet>
-                                            <h:outputText value="#{p.workShift}" />
-                                        </h:column>
-
-                                        <h:column>
                                             <f:facet name="header"> Arrival Turn </f:facet>
                                             <h:outputText value="#{p.arrivalTurn}" />
                                         </h:column>
@@ -147,6 +357,85 @@
                                         <h:column>
                                             <f:facet name="header"> Person Type </f:facet>
                                             <h:outputText value="#{p.personType}" />
+                                        </h:column>
+
+                                    </h:dataTable>
+                                </h:form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </article>
+                <!-- /Article -->
+
+                <!-- Article main content -->
+                <article class="col-xs-12 maincontent">
+                    <header class="page-header">
+                        <h1 class="page-title">List of Animals</h1>
+                    </header>
+
+                    <div class="col-md-12 col-md-offset-0 col-sm-0 col-sm-offset-1">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <h3 class="thin text-center">List of Pets</h3>
+                                <p class="text-center text-muted"> Pet list registered in the database </p>
+
+                                <h:form>
+
+                                    <h:panelGrid>
+                                        <h:outputText value="Find Pet by ID"></h:outputText>
+                                        <h:inputText value="#{animalManagedBean.filterID}"></h:inputText>
+                                        <h:commandButton value="Search" action="#{animalManagedBean.findById()}"></h:commandButton>
+                                    </h:panelGrid>
+
+                                    <h:panelGrid>
+                                        <h:outputText value="Nombre:"></h:outputText>
+                                        <h:inputText value="#{animalManagedBean.animal.name}"/>
+                                        <h:commandButton value="Save" action="#{animalManagedBean.save()}"></h:commandButton>
+                                        <h:commandButton value="Delete" action="#{animalManagedBean.delete()}"></h:commandButton>
+                                    </h:panelGrid>
+
+                                    <h:dataTable  width="100%" class="table-class" value="#{animalManagedBean.index()}" var="a" border="1">
+
+                                        <h:column>
+                                            <f:facet name="header"> ID Animal </f:facet>
+                                            <h:outputText value="#{a.idAnimal}" />
+                                        </h:column>
+
+                                    </h:dataTable>
+                                </h:form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 col-md-offset-0 col-sm-0 col-sm-offset-1">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <h3 class="thin text-center">List of Stray Animals</h3>
+                                <p class="text-center text-muted"> Stray Animal list registered in the database </p>
+
+                                <h:form>
+
+                                    <h:panelGrid>
+                                        <h:outputText value="Find Stray Animal by ID"></h:outputText>
+                                        <h:inputText value="#{animalManagedBean.filterID}"></h:inputText>
+                                        <h:commandButton value="Search" action="#{animalManagedBean.findById()}"></h:commandButton>
+                                    </h:panelGrid>
+
+                                    <h:panelGrid>
+                                        <h:outputText value="Nombre:"></h:outputText>
+                                        <h:inputText value="#{animalManagedBean.animal.name}"/>
+                                        <h:commandButton value="Save" action="#{animalManagedBean.save()}"></h:commandButton>
+                                        <h:commandButton value="Delete" action="#{animalManagedBean.delete()}"></h:commandButton>
+                                    </h:panelGrid>
+
+                                    <h:dataTable  width="100%" class="table-class" value="#{animalManagedBean.index()}" var="a" border="1">
+
+                                        <h:column>
+                                            <f:facet name="header"> ID Animal </f:facet>
+                                            <h:outputText value="#{a.idAnimal}" />
                                         </h:column>
 
                                     </h:dataTable>
