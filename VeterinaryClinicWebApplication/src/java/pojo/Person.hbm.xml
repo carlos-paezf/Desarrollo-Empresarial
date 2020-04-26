@@ -1,60 +1,59 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 16/04/2020 05:01:38 PM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26/04/2020 02:40:06 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="pojo.Person" table="person" catalog="veterinary_clinic" optimistic-lock="version">
-        <id name="idPerson" type="java.lang.Integer">
-            <column name="id_person" />
-            <generator class="identity" />
-        </id>
-        <many-to-one name="address" class="pojo.Address" fetch="select">
-            <column name="id_address" not-null="true" />
-        </many-to-one>
-        <many-to-one name="animal" class="pojo.Animal" fetch="select">
-            <column name="id_rescued_pet" />
-        </many-to-one>
-        <property name="document" type="int">
-            <column name="document" not-null="true" />
-        </property>
-        <property name="name" type="string">
-            <column name="name" length="50" not-null="true" />
-        </property>
-        <property name="surname" type="string">
-            <column name="surname" length="50" not-null="true" />
-        </property>
-        <property name="phoneNumber" type="string">
-            <column name="phone_number" length="11" not-null="true" />
-        </property>
-        <property name="email" type="string">
-            <column name="email" length="50" />
-        </property>
-        <property name="professionalCard" type="java.lang.Integer">
-            <column name="professional_card" />
-        </property>
-        <property name="medicalSpeciality" type="string">
-            <column name="medical_speciality" length="50" />
-        </property>
-        <property name="workShift" type="java.lang.Integer">
-            <column name="work_shift" />
-        </property>
-        <property name="arrivalTurn" type="java.lang.Integer">
-            <column name="arrival_turn" />
-        </property>
-        <property name="personType" type="int">
-            <column name="personType" not-null="true" />
-        </property>
-        <set name="animals" table="animal" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_client_owner" />
-            </key>
-            <one-to-many class="pojo.Animal" />
-        </set>
-        <set name="invoices" table="invoice" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_person" not-null="true" />
-            </key>
-            <one-to-many class="pojo.Invoice" />
-        </set>
-    </class>
+  <class catalog="veterinary_clinic" name="pojo.Person" optimistic-lock="version" table="person">
+    <id name="idPerson" type="java.lang.Integer">
+      <column name="id_person"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="pojo.Address" fetch="select" name="address">
+      <column name="id_address" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="pojo.Animal" fetch="select" name="animal">
+      <column name="id_rescued_pet"/>
+    </many-to-one>
+    <property name="document" type="int">
+      <column name="document" not-null="true"/>
+    </property>
+    <property name="name" type="string">
+      <column length="50" name="name" not-null="true"/>
+    </property>
+    <property name="surname" type="string">
+      <column length="50" name="surname" not-null="true"/>
+    </property>
+    <property name="phoneNumber" type="string">
+      <column length="11" name="phone_number" not-null="true"/>
+    </property>
+    <property name="email" type="string">
+      <column length="50" name="email"/>
+    </property>
+    <property name="professionalCard" type="java.lang.Integer">
+      <column name="professional_card"/>
+    </property>
+    <property name="medicalSpeciality" type="string">
+      <column length="50" name="medical_speciality"/>
+    </property>
+    <property name="workShift" type="java.lang.Integer">
+      <column name="work_shift"/>
+    </property>
+    <property name="arrivalTurn" type="java.lang.Integer">
+      <column name="arrival_turn"/>
+    </property>
+    <property name="personType" type="int">
+      <column name="personType" not-null="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="animals" table="animal">
+      <key>
+        <column name="id_client_owner"/>
+      </key>
+      <one-to-many class="pojo.Animal"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="invoices" table="invoice">
+      <key>
+        <column name="id_person" not-null="true"/>
+      </key>
+      <one-to-many class="pojo.Invoice"/>
+    </set>
+  </class>
 </hibernate-mapping>

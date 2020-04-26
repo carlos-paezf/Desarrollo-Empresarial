@@ -1,7 +1,8 @@
 package pojo;
-// Generated 16/04/2020 05:01:36 PM by Hibernate Tools 4.3.1
+// Generated 26/04/2020 02:40:04 PM by Hibernate Tools 4.3.1
 
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,10 +19,10 @@ public class Animal  implements java.io.Serializable {
      private boolean updateVaccines;
      private String name;
      private String age;
-     private int species;
-     private int breed;
-     private int admissionDate;
-     private Integer departureDate;
+     private String species;
+     private String breed;
+     private Date admissionDate;
+     private Date departureDate;
      private int animalType;
      private Set persons = new HashSet(0);
      private Set invoices = new HashSet(0);
@@ -30,7 +31,7 @@ public class Animal  implements java.io.Serializable {
     }
 
 	
-    public Animal(MedicalTreatment medicalTreatment, boolean updateVaccines, String age, int species, int breed, int admissionDate, int animalType) {
+    public Animal(MedicalTreatment medicalTreatment, boolean updateVaccines, String age, String species, String breed, Date admissionDate, int animalType) {
         this.medicalTreatment = medicalTreatment;
         this.updateVaccines = updateVaccines;
         this.age = age;
@@ -39,7 +40,7 @@ public class Animal  implements java.io.Serializable {
         this.admissionDate = admissionDate;
         this.animalType = animalType;
     }
-    public Animal(Address address, MedicalTreatment medicalTreatment, Person person, boolean updateVaccines, String name, String age, int species, int breed, int admissionDate, Integer departureDate, int animalType, Set persons, Set invoices) {
+    public Animal(Address address, MedicalTreatment medicalTreatment, Person person, boolean updateVaccines, String name, String age, String species, String breed, Date admissionDate, Date departureDate, int animalType, Set persons, Set invoices) {
        this.address = address;
        this.medicalTreatment = medicalTreatment;
        this.person = person;
@@ -104,32 +105,32 @@ public class Animal  implements java.io.Serializable {
     public void setAge(String age) {
         this.age = age;
     }
-    public int getSpecies() {
+    public String getSpecies() {
         return this.species;
     }
     
-    public void setSpecies(int species) {
+    public void setSpecies(String species) {
         this.species = species;
     }
-    public int getBreed() {
+    public String getBreed() {
         return this.breed;
     }
     
-    public void setBreed(int breed) {
+    public void setBreed(String breed) {
         this.breed = breed;
     }
-    public int getAdmissionDate() {
+    public Date getAdmissionDate() {
         return this.admissionDate;
     }
     
-    public void setAdmissionDate(int admissionDate) {
+    public void setAdmissionDate(Date admissionDate) {
         this.admissionDate = admissionDate;
     }
-    public Integer getDepartureDate() {
+    public Date getDepartureDate() {
         return this.departureDate;
     }
     
-    public void setDepartureDate(Integer departureDate) {
+    public void setDepartureDate(Date departureDate) {
         this.departureDate = departureDate;
     }
     public int getAnimalType() {

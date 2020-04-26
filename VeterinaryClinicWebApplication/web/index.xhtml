@@ -50,8 +50,8 @@
         <header id="head">
             <div class="container">
                 <div class="row">
-                    <h1 class="lead">MY APP WITH JSF!!!</h1>
-                    <p class="tagline">VETERINARY CLINIC</p>
+                    <h1 class="lead">VETERINARY CLINIC</h1>
+                    <p class="tagline">MY APP WITH JSF!!!</p>
                     <p><a class="btn btn-default btn-lg" role="button">MORE INFO</a> <a class="btn btn-action btn-lg" role="button">DOWNLOAD NOW</a></p>
                 </div>
             </div>
@@ -63,8 +63,9 @@
 
             <ol class="breadcrumb">
                 <li><a href="2.html">Home</a></li>
-                <li class="active">List of Persons</li>
-                <li class="active">List of Animals</li>
+                <li class="active"><a href="#persons">List of Persons</a></li>
+                <li class="active"><a href="#animals">List of Animals</a></li>
+                <li class="active"><a href="#medicines">List of Medicines</a></li>
             </ol>
 
             <div class="row">
@@ -72,7 +73,7 @@
                 <!-- Article main content -->
                 <article class="col-xs-12 maincontent">
                     <header class="page-header">
-                        <h1 class="page-title">List of Persons</h1>
+                        <h1 class="page-title"><a name="persons" id="persons">List of Persons</a></h1>
                     </header>
 
                     <div class="col-md-12 col-md-offset-0 col-sm-0 col-sm-offset-1">
@@ -95,7 +96,7 @@
                                 </div>
 
                                 <div class="col-md-7 col-md-offset-0 col-sm-0 col-sm-offset-1">
-                                    <h3 class="thin text-center">Create or Update a new Client</h3>
+                                    <h3 class="thin text-center">Update or Create a new Client</h3>
                                     <h:form>
                                         <h:panelGrid>
                                             <h:outputText value="Document: "></h:outputText>
@@ -182,7 +183,7 @@
                                 </div>
 
                                 <div class="col-md-7 col-md-offset-0 col-sm-0 col-sm-offset-1">
-                                    <h3 class="thin text-center">Create or Update a new Veterinarian</h3>
+                                    <h3 class="thin text-center">Update or Create a new Veterinarian</h3>
                                     <h:form>
                                         <h:panelGrid>
                                             <h:outputText value="Document: "></h:outputText>
@@ -281,10 +282,10 @@
                                 </div>
 
                                 <div class="col-md-7 col-md-offset-0 col-sm-0 col-sm-offset-1">
-                                    <h3 class="thin text-center">Create or Update a new Veterinarian</h3>
+                                    <h3 class="thin text-center">Update or Create a new Veterinarian</h3>
                                     <h:form>
                                         <h:panelGrid>
-                                             <h:outputText value="Document: "></h:outputText>
+                                            <h:outputText value="Document: "></h:outputText>
                                             <h:inputText value="#{personManagedBean.person.document}"/>
                                             <h:outputText value="Name:"></h:outputText>
                                             <h:inputText value="#{personManagedBean.person.name}"/>
@@ -372,7 +373,7 @@
                 <!-- Article main content -->
                 <article class="col-xs-12 maincontent">
                     <header class="page-header">
-                        <h1 class="page-title">List of Animals</h1>
+                        <h1 class="page-title"><a name="animals" id="animals">List of Animals</a></h1>
                     </header>
 
                     <div class="col-md-12 col-md-offset-0 col-sm-0 col-sm-offset-1">
@@ -381,31 +382,94 @@
                                 <h3 class="thin text-center">List of Pets</h3>
                                 <p class="text-center text-muted"> Pet list registered in the database </p>
 
+                                <div class="col-md-5 col-md-offset-0 col-sm-0 col-sm-offset-1">
+                                    <h3 class="thin text-center">Find Pet by ID</h3>
+                                    <p class="text-center text-muted"> Pet list registered in the database </p>
+                                    <h:form>
+                                        <h:panelGrid>
+                                            <h:outputText value="Find Pet by ID"></h:outputText>
+                                            <h:inputText value="#{animalManagedBean.filterID}"></h:inputText>
+                                            <h:commandButton value="Search" action="#{animalManagedBean.findById()}"></h:commandButton>
+                                        </h:panelGrid>
+                                    </h:form>
+                                </div>
+
+                                <div class="col-md-7 col-md-offset-0 col-sm-0 col-sm-offset-1">
+                                    <h3 class="thin text-center">Update or Create a new Pet</h3>
+                                    <h:form>
+                                        <h:panelGrid>
+                                            <h:outputText value="Update Vaccines:"></h:outputText>
+                                            <h:inputText value="#{animalManagedBean.animal.updateVaccines}"/>
+                                            <h:outputText value="Name:"></h:outputText>
+                                            <h:inputText value="#{animalManagedBean.animal.name}"/>
+                                            <h:outputText value="Age:"></h:outputText>
+                                            <h:inputText value="#{animalManagedBean.animal.age}"/>
+                                            <h:outputText value="Species:"></h:outputText>
+                                            <h:inputText value="#{animalManagedBean.animal.species}"/>
+                                            <h:outputText value="Breed:"></h:outputText>
+                                            <h:inputText value="#{animalManagedBean.animal.breed}"/>
+                                            <h:outputText value="Id Owner Client:"></h:outputText>
+                                            <h:inputText value="#{animalManagedBean.animal.person}"/>
+                                            <h:outputText value="Id Medical Treatment:"></h:outputText>
+                                            <h:inputText value="#{animalManagedBean.animal.medicalTreatment}"/>
+                                            <h:outputText value="Admision Date:"></h:outputText>
+                                            <h:inputText value="#{animalManagedBean.animal.admissionDate}"/>
+                                            <h:outputText value="Deperture Date:"></h:outputText>
+                                            <h:inputText value="#{animalManagedBean.animal.departureDate}"/>
+                                            <h:commandButton value="Save" action="#{animalManagedBean.save()}"></h:commandButton>
+                                            <h:commandButton value="Delete" action="#{animalManagedBean.delete()}"></h:commandButton>
+                                        </h:panelGrid>
+                                    </h:form>
+                                </div>
+
                                 <h:form>
-
-                                    <h:panelGrid>
-                                        <h:outputText value="Find Pet by ID"></h:outputText>
-                                        <h:inputText value="#{animalManagedBean.filterID}"></h:inputText>
-                                        <h:commandButton value="Search" action="#{animalManagedBean.findById()}"></h:commandButton>
-                                    </h:panelGrid>
-
-                                    <h:panelGrid>
-                                        <h:outputText value="Nombre:"></h:outputText>
-                                        <h:inputText value="#{animalManagedBean.animal.name}"/>
-                                        <h:commandButton value="Save" action="#{animalManagedBean.save()}"></h:commandButton>
-                                        <h:commandButton value="Delete" action="#{animalManagedBean.delete()}"></h:commandButton>
-                                    </h:panelGrid>
-
                                     <h:dataTable  width="100%" class="table-class" value="#{animalManagedBean.index()}" var="a" border="1">
-
                                         <h:column>
                                             <f:facet name="header"> ID Animal </f:facet>
                                             <h:outputText value="#{a.idAnimal}" />
                                         </h:column>
-
+                                        <h:column>
+                                            <f:facet name="header"> Update Vaccines </f:facet>
+                                            <h:outputText value="#{a.updateVaccines}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Name </f:facet>
+                                            <h:outputText value="#{a.name}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Age </f:facet>
+                                            <h:outputText value="#{a.age}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Species </f:facet>
+                                            <h:outputText value="#{a.species}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Breed </f:facet>
+                                            <h:outputText value="#{a.breed}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Id Owner Client </f:facet>
+                                            <h:outputText value="#{a.person}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> ID Medical Treatment </f:facet>
+                                            <h:outputText value="#{a.medicalTreatment}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Admision Date </f:facet>
+                                            <h:outputText value="#{a.admissionDate}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Departure Date </f:facet>
+                                            <h:outputText value="#{a.departureDate}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Animal Type </f:facet>
+                                            <h:outputText value="#{a.animalType}" />
+                                        </h:column>
                                     </h:dataTable>
                                 </h:form>
-
                             </div>
                         </div>
                     </div>
@@ -416,31 +480,174 @@
                                 <h3 class="thin text-center">List of Stray Animals</h3>
                                 <p class="text-center text-muted"> Stray Animal list registered in the database </p>
 
+                                <div class="col-md-5 col-md-offset-0 col-sm-0 col-sm-offset-1">
+                                    <h3 class="thin text-center">Find Stray Animal by ID</h3>
+                                    <p class="text-center text-muted"> Stray Animal list registered in the database </p>
+                                    <h:form>
+                                        <h:panelGrid>
+                                            <h:outputText value="Find Stray Animal by ID"></h:outputText>
+                                            <h:inputText value="#{animalManagedBean.filterID}"></h:inputText>
+                                            <h:commandButton value="Search" action="#{animalManagedBean.findById()}"></h:commandButton>
+                                        </h:panelGrid>
+                                    </h:form>
+                                </div>
+
+                                <div class="col-md-7 col-md-offset-0 col-sm-0 col-sm-offset-1">
+                                    <h3 class="thin text-center">Update or Create a new Stray Animal</h3>
+                                    <h:form>
+                                        <h:panelGrid>
+                                            <h:outputText value="Update Vaccines:"></h:outputText>
+                                            <h:inputText value="#{animalManagedBean.animal.updateVaccines}"/>
+                                            <h:outputText value="Name:"></h:outputText>
+                                            <h:inputText value="#{animalManagedBean.animal.name}"/>
+                                            <h:outputText value="Age:"></h:outputText>
+                                            <h:inputText value="#{animalManagedBean.animal.age}"/>
+                                            <h:outputText value="Species:"></h:outputText>
+                                            <h:inputText value="#{animalManagedBean.animal.species}"/>
+                                            <h:outputText value="Breed:"></h:outputText>
+                                            <h:inputText value="#{animalManagedBean.animal.breed}"/>
+                                            <h:outputText value="Id Medical Treatment:"></h:outputText>
+                                            <h:inputText value="#{animalManagedBean.animal.medicalTreatment}"/>
+                                            <h:outputText value="Admision Date:"></h:outputText>
+                                            <h:inputText value="#{animalManagedBean.animal.admissionDate}"/>
+                                            <h:outputText value="Deperture Date:"></h:outputText>
+                                            <h:inputText value="#{animalManagedBean.animal.departureDate}"/>
+                                            <h:outputText value="Found in:"></h:outputText>
+                                            <h:inputText value="#{animalManagedBean.animal.address}"/>
+                                            <h:commandButton value="Save" action="#{animalManagedBean.save()}"></h:commandButton>
+                                            <h:commandButton value="Delete" action="#{animalManagedBean.delete()}"></h:commandButton>
+                                        </h:panelGrid>
+                                    </h:form>
+                                </div>
+
                                 <h:form>
-
-                                    <h:panelGrid>
-                                        <h:outputText value="Find Stray Animal by ID"></h:outputText>
-                                        <h:inputText value="#{animalManagedBean.filterID}"></h:inputText>
-                                        <h:commandButton value="Search" action="#{animalManagedBean.findById()}"></h:commandButton>
-                                    </h:panelGrid>
-
-                                    <h:panelGrid>
-                                        <h:outputText value="Nombre:"></h:outputText>
-                                        <h:inputText value="#{animalManagedBean.animal.name}"/>
-                                        <h:commandButton value="Save" action="#{animalManagedBean.save()}"></h:commandButton>
-                                        <h:commandButton value="Delete" action="#{animalManagedBean.delete()}"></h:commandButton>
-                                    </h:panelGrid>
-
                                     <h:dataTable  width="100%" class="table-class" value="#{animalManagedBean.index()}" var="a" border="1">
-
                                         <h:column>
                                             <f:facet name="header"> ID Animal </f:facet>
                                             <h:outputText value="#{a.idAnimal}" />
                                         </h:column>
-
+                                        <h:column>
+                                            <f:facet name="header"> Update Vaccines </f:facet>
+                                            <h:outputText value="#{a.updateVaccines}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Name </f:facet>
+                                            <h:outputText value="#{a.name}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Age </f:facet>
+                                            <h:outputText value="#{a.age}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Species </f:facet>
+                                            <h:outputText value="#{a.species}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Breed </f:facet>
+                                            <h:outputText value="#{a.breed}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> ID Medical Treatment </f:facet>
+                                            <h:outputText value="#{a.medicalTreatment}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Admision Date </f:facet>
+                                            <h:outputText value="#{a.admissionDate}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Departure Date </f:facet>
+                                            <h:outputText value="#{a.departureDate}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Found in </f:facet>
+                                            <h:outputText value="#{a.address}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Animal Type </f:facet>
+                                            <h:outputText value="#{a.animalType}" />
+                                        </h:column>
                                     </h:dataTable>
                                 </h:form>
 
+                            </div>
+                        </div>
+                    </div>
+
+                </article>
+                <!-- /Article -->
+
+                <!-- Article main content -->
+                <article class="col-xs-12 maincontent">
+                    <header class="page-header">
+                        <h1 class="page-title"><a name="medicines" id="medicines">List of Medicines</a></h1>
+                    </header>
+
+                    <div class="col-md-12 col-md-offset-0 col-sm-0 col-sm-offset-1">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <h3 class="thin text-center">List of Medicines</h3>
+                                <p class="text-center text-muted"> Medicine list registered in the database </p>
+
+                                <div class="col-md-5 col-md-offset-0 col-sm-0 col-sm-offset-1">
+                                    <h3 class="thin text-center">Find Medicine by ID</h3>
+                                    <p class="text-center text-muted"> Medicine list registered in the database </p>
+                                    <h:form>
+                                        <h:panelGrid>
+                                            <h:outputText value="Find Medicine by ID"></h:outputText>
+                                            <h:inputText value="#{medicineManagedBean.filterID}"></h:inputText>
+                                            <h:commandButton value="Search" action="#{medicineManagedBean.findById()}"></h:commandButton>
+                                        </h:panelGrid>
+                                    </h:form>
+                                </div>
+
+                                <div class="col-md-7 col-md-offset-0 col-sm-0 col-sm-offset-1">
+                                    <h3 class="thin text-center">Update or Create a new medicine</h3>
+                                    <h:form>
+                                        <h:panelGrid>
+                                            <h:outputText value="Barcode:"></h:outputText>
+                                            <h:inputText value="#{medicineManagedBean.medicine.barcode}"/>
+                                            <h:outputText value="Name Medicine:"></h:outputText>
+                                            <h:inputText value="#{medicineManagedBean.medicine.nameMedicine}"/>
+                                            <h:outputText value="Quanty in Warehouse:"></h:outputText>
+                                            <h:inputText value="#{medicineManagedBean.medicine.quantityInWarehouse}"/>
+                                            <h:outputText value="Expiration Date: "></h:outputText>
+                                            <h:inputText value="#{medicineManagedBean.medicine.expirationDate}"/>
+                                            <h:outputText value="Manufacturer:"></h:outputText>
+                                            <h:inputText value="#{medicineManagedBean.medicine.manufacturer}"/>
+                                            <h:commandButton value="Save" action="#{medicineManagedBean.save()}"></h:commandButton>
+                                            <h:commandButton value="Delete" action="#{medicineManagedBean.delete()}"></h:commandButton>
+                                        </h:panelGrid>
+                                    </h:form>
+                                </div>
+
+                                <h:form>
+                                    <h:dataTable  width="100%" class="table-class" value="#{medicineManagedBean.index()}" var="m" border="1">
+                                        <h:column>
+                                            <f:facet name="header"> Id Medicine </f:facet>
+                                            <h:outputText value="#{m.idMedicine}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Barcode </f:facet>
+                                            <h:outputText value="#{m.barcode}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Name Medicine </f:facet>
+                                            <h:outputText value="#{m.nameMedicine}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Quantity in Warehouse </f:facet>
+                                            <h:outputText value="#{m.quantityInWarehouse}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Expiration Date </f:facet>
+                                            <h:outputText value="#{m.expirationDate}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"> Manufacturer </f:facet>
+                                            <h:outputText value="#{m.manufacturer}" />
+                                        </h:column>
+                                    </h:dataTable>
+                                </h:form>
                             </div>
                         </div>
                     </div>
@@ -460,10 +667,10 @@
                         <div class="col-md-3 widget">
                             <h3 class="widget-title">Contact</h3>
                             <div class="widget-body">
-                                <p>+234 23 9873237<br></br>
-                                    <a href="mailto:#">some.email@somewhere.com</a><br></br>
+                                <p>+57 314 328 2831<br></br>
+                                    <a href="mailto:#">carlos.paezf@usantoto.edu.co</a><br></br>
                                     <br></br>
-                                    234 Hidden Pond Road, Ashland City, TN 37015
+                                    Santo Tomas University, Tunja Campus. Boyaca, Colombia
                                 </p>	
                             </div>
                         </div>
@@ -481,10 +688,19 @@
                         </div>
 
                         <div class="col-md-6 widget">
-                            <h3 class="widget-title">Text widget</h3>
+                            <h3 class="widget-title">Description</h3>
                             <div class="widget-body">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, dolores, quibusdam architecto voluptatem amet fugiat nesciunt placeat provident cumque accusamus itaque voluptate modi quidem dolore optio velit hic iusto vero praesentium repellat commodi ad id expedita cupiditate repellendus possimus unde?</p>
-                                <p>Eius consequatur nihil quibusdam! Laborum, rerum, quis, inventore ipsa autem repellat provident assumenda labore soluta minima alias temporibus facere distinctio quas adipisci nam sunt explicabo officia tenetur at ea quos doloribus dolorum voluptate reprehenderit architecto sint libero illo et hic.</p>
+                                <p>This website is a project for the Business Development area. Project applied to learning, which brings 
+                                    together the basic concepts of Hibernate, Java EE 7, Html, CSS and JavaScript. The code for this project 
+                                    is open source, which can be found along with another related project at 
+                                    <a href="https://github.com/carlos-paezf/Desarrollo-Empresarial.git">
+                                        https://github.com/carlos-paezf/Desarrollo-Empresarial.git</a></p>
+                            </div>
+                            <h3 class="widget-title">Vision USTA System Engineering</h3>
+                            <div class="widget-body">
+                                <p>The academic program of Systems Engineering will be recognized in the disciplinary, regional and global 
+                                    context, as a generator of technological innovations that allow satisfying various needs of society, maintaining 
+                                    the principles of truth, ethics and service.</p>
                             </div>
                         </div>
 

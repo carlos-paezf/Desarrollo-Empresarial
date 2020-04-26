@@ -1,27 +1,26 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 16/04/2020 05:01:38 PM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26/04/2020 02:40:06 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="pojo.Invoice" table="invoice" catalog="veterinary_clinic" optimistic-lock="version">
-        <id name="idInvoice" type="java.lang.Integer">
-            <column name="id_invoice" />
-            <generator class="identity" />
-        </id>
-        <many-to-one name="animal" class="pojo.Animal" fetch="select">
-            <column name="id_animal" not-null="true" />
-        </many-to-one>
-        <many-to-one name="medicalTreatment" class="pojo.MedicalTreatment" fetch="select">
-            <column name="id_medical_treatment" not-null="true" />
-        </many-to-one>
-        <many-to-one name="person" class="pojo.Person" fetch="select">
-            <column name="id_person" not-null="true" />
-        </many-to-one>
-        <property name="expeditionDate" type="date">
-            <column name="expedition_date" length="10" not-null="true" />
-        </property>
-        <property name="totalPrice" type="float">
-            <column name="total_price" precision="12" scale="0" not-null="true" />
-        </property>
-    </class>
+  <class catalog="veterinary_clinic" name="pojo.Invoice" optimistic-lock="version" table="invoice">
+    <id name="idInvoice" type="java.lang.Integer">
+      <column name="id_invoice"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="pojo.Animal" fetch="select" name="animal">
+      <column name="id_animal" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="pojo.MedicalTreatment" fetch="select" name="medicalTreatment">
+      <column name="id_medical_treatment" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="pojo.Person" fetch="select" name="person">
+      <column name="id_person" not-null="true"/>
+    </many-to-one>
+    <property name="expeditionDate" type="date">
+      <column length="10" name="expedition_date" not-null="true"/>
+    </property>
+    <property name="totalPrice" type="float">
+      <column name="total_price" not-null="true" precision="12" scale="0"/>
+    </property>
+  </class>
 </hibernate-mapping>

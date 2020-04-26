@@ -9,36 +9,36 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
-import model.AnimalModel;
-import pojo.Animal;
+import model.MedicineModel;
+import pojo.Medicine;
 
 /**
  *
  * @author David Ferrer
  */
-@Named(value = "animalManagedBean")
+@Named(value = "medicineManagedBean")
 @RequestScoped
-public class AnimalManagedBean {
+public class MedicineManagedBean {
 
     //Attributes
-    private final AnimalModel model;
-    private Animal animal;
+    private final MedicineModel model;
+    private Medicine medicine;
     private int filterID;
-
+    
     /**
-     * Creates a new instance of AnimalManagedBean
+     * Creates a new instance of MedicineManagedBean
      */
-    public AnimalManagedBean() {
-        model = new AnimalModel();
-        animal = new Animal();
+    public MedicineManagedBean() {
+        model = new MedicineModel();
+        medicine = new Medicine();
     }
-
+    
     /**
      * Returns the list of all stored in DB
      *
-     * @return animal list
+     * @return medicine list
      */
-    public List<Animal> index() {
+    public List<Medicine> index() {
         try {
 
             return model.findAll();
@@ -50,13 +50,13 @@ public class AnimalManagedBean {
     }
 
     /**
-     * Persist new Animal to DB
+     * Persist new Medicine to DB
      *
-     * @return animal list
+     * @return medicine list
      */
     public String save() {
         try {
-            model.save(animal);
+            model.save(medicine);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -64,13 +64,13 @@ public class AnimalManagedBean {
     }
     
     /**
-     * Find Animal by ID
+     * Find Medicine by ID
      *
-     * @return animal list
+     * @return Medicine list
      */
     public String findById(){
         try {
-            animal = (Animal) model.findById(filterID);
+            medicine = (Medicine) model.findById(filterID);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -78,24 +78,24 @@ public class AnimalManagedBean {
     }
 
         /**
-     * Delete Animal to DB
+     * Delete Medicine to DB
      *
-     * @return Animal list
+     * @return medicine list
      */
     public String delete() {
         try {
-            model.delete(animal);
+            model.delete(medicine);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return "index";
     }
-    public Animal getAnimal() {
-        return animal;
+    public Medicine getMedicine() {
+        return medicine;
     }
 
-    public void setAnimal(Animal animal) {
-        this.animal = animal;
+    public void setMedicine(Medicine medicine) {
+        this.medicine = medicine;
     }
 
     public int getFilterID() {

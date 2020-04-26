@@ -1,42 +1,41 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 16/04/2020 05:01:38 PM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26/04/2020 02:40:06 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="pojo.Address" table="address" catalog="veterinary_clinic" optimistic-lock="version">
-        <id name="idAddress" type="java.lang.Integer">
-            <column name="id_address" />
-            <generator class="identity" />
-        </id>
-        <many-to-one name="address" class="pojo.Address" fetch="select">
-            <column name="relation" />
-        </many-to-one>
-        <property name="name" type="string">
-            <column name="name" length="20" not-null="true" />
-        </property>
-        <set name="persons" table="person" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_address" not-null="true" />
-            </key>
-            <one-to-many class="pojo.Person" />
-        </set>
-        <set name="animals" table="animal" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="found_in" />
-            </key>
-            <one-to-many class="pojo.Animal" />
-        </set>
-        <set name="medicalTreatments" table="medical_treatment" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="place_realization" />
-            </key>
-            <one-to-many class="pojo.MedicalTreatment" />
-        </set>
-        <set name="addresses" table="address" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="relation" />
-            </key>
-            <one-to-many class="pojo.Address" />
-        </set>
-    </class>
+  <class catalog="veterinary_clinic" name="pojo.Address" optimistic-lock="version" table="address">
+    <id name="idAddress" type="java.lang.Integer">
+      <column name="id_address"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="pojo.Address" fetch="select" name="address">
+      <column name="relation"/>
+    </many-to-one>
+    <property name="name" type="string">
+      <column length="20" name="name" not-null="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="persons" table="person">
+      <key>
+        <column name="id_address" not-null="true"/>
+      </key>
+      <one-to-many class="pojo.Person"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="animals" table="animal">
+      <key>
+        <column name="found_in"/>
+      </key>
+      <one-to-many class="pojo.Animal"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="medicalTreatments" table="medical_treatment">
+      <key>
+        <column name="place_realization"/>
+      </key>
+      <one-to-many class="pojo.MedicalTreatment"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="addresses" table="address">
+      <key>
+        <column name="relation"/>
+      </key>
+      <one-to-many class="pojo.Address"/>
+    </set>
+  </class>
 </hibernate-mapping>

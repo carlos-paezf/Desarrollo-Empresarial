@@ -98,10 +98,6 @@ public class PersonManagedBean {
         this.person = person;
     }
 
-    public String getMessage() {
-        return "signup";
-    }
-
     public int getFilterID() {
         return filterID;
     }
