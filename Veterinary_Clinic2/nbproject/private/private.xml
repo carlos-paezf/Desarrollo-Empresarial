@@ -11,13 +11,6 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Desarrollo_Empresarial/Veterinary_Clinic/src/model/StrayAnimal.java</file>
-            <file>file:/C:/Desarrollo_Empresarial/Veterinary_Clinic/src/model/Person.java</file>
-            <file>file:/C:/Desarrollo_Empresarial/Veterinary_Clinic/src/test/DBTest.java</file>
-            <file>file:/C:/Desarrollo_Empresarial/Veterinary_Clinic/src/META-INF/persistence.xml</file>
-            <file>file:/C:/Desarrollo_Empresarial/Veterinary_Clinic/src/model/Animal.java</file>
-            <file>file:/C:/Desarrollo_Empresarial/Veterinary_Clinic/src/model/MedicalTreatment.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
