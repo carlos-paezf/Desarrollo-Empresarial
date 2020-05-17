@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        <h:form id="person-form">
+            
+            <h:panelGrid columns="2">
+
+                <h:outputText value="Document: "></h:outputText>
+                <p:inputText value="#{personManagedBean.document}"/>
+
+                <h:outputText value="Name:"></h:outputText>
+                <p:inputText value="#{personManagedBean.name}"/>
+
+                <h:outputText value="Surname:"></h:outputText>
+                <p:inputText value="#{personManagedBean.surname}"/>
+
+                <h:outputText value="Phone Number:"></h:outputText>
+                <p:inputText value="#{personManagedBean.phoneNumber}"/>
+
+                <h:outputText value="E-mail:"></h:outputText>
+                <p:inputText value="#{personManagedBean.email}"/>
+
+                <h:outputText value="Id Address:"></h:outputText>
+                <p:selectOneMenu validator="#{personManagedBean.idAddress.idAddress}" >
+                    <f:selectItems value="#{addressManagedBean.index()}" var="a" itemValue="#{a.idAddress}" itemLabel="#{a.name}" />
+                </p:selectOneMenu>
+                
+                <h:outputText value="Professional Card:"></h:outputText>
+                <p:inputText value="#{personManagedBean.professionalCard}"/>
+                
+                <h:outputText value="Medical Speciality:"></h:outputText>
+                <p:inputText value="#{personManagedBean.medicalSpeciality}"/>
+                
+                <h:outputText value="Work Shift:"></h:outputText>
+                <p:inputText value="#{personManagedBean.workShift}"/>
+
+                <h:outputText value="Arrival Turn:"></h:outputText>
+                <p:inputText value="#{personManagedBean.arrivalTurn}"/>
+                
+                <h:outputText value="Id, Name Rescued Pet:"></h:outputText>
+                <p:selectOneMenu validator="#{personManagedBean.idRescuedPet.idAnimal}" >
+                    <f:selectItems value="#{animalManagedBean.index()}" var="a" itemValue="#{a.idAnimal}" itemLabel="#{a.idAnimal}, #{a.name} " />
+                </p:selectOneMenu>
+
+                <p:commandButton action="#{personManagedBean.create()}" value="Save" />
+                
+            </h:panelGrid>
+            
+        </h:form>
+        
+    </h:body>
+</html>
+

@@ -5,9 +5,12 @@
  */
 package manageControllerBean;
 
+import ejb.AnimalFacadeLocal;
+import ejb.InvoiceFacadeLocal;
 import ejb.PersonFacadeLocal;
 import entity.Address;
 import entity.Animal;
+import entity.Invoice;
 import entity.Person;
 import java.util.List;
 import javax.ejb.EJB;
@@ -25,6 +28,8 @@ public class PersonManagedBean {
     //Special Attributes
     @EJB
     private PersonFacadeLocal personFacade;
+    private AnimalFacadeLocal animalFacade;
+    private InvoiceFacadeLocal invoiceFacade;
     //Controller Attributes
     private Integer idPerson;
     private int document;
@@ -157,31 +162,42 @@ public class PersonManagedBean {
         return personFacade.findAll();
     }
     
+    public List<Animal> animals(){
+        return animalFacade.findAll();
+    }
+    
+    public List<Invoice> invoices(){
+        return invoiceFacade.findAll();
+    }
+    
     public String view(int id){
         Person p = personFacade.find(id);
         
+        idPerson = p.getIdPerson();
         document = p.getDocument();
         name = p.getName();
         surname = p.getSurname();
         phoneNumber = p.getPhoneNumber();
         email = p.getEmail();
+        idAddress = p.getIdAddress();
         professionalCard = p.getProfessionalCard();
         medicalSpeciality = p.getMedicalSpeciality();
         workShift = p.getWorkShift();
         arrivalTurn = p.getArrivalTurn();
         personType = p.getPersonType();
         
-        return "index";
+        return "form";
     }
     
     public String create(){
         Person p = new Person();
         
-        p.setDocument(0);
+        p.setDocument(document);
         p.setName(name);
         p.setSurname(surname);
         p.setPhoneNumber(phoneNumber);
         p.setEmail(email);
+        p.setIdAddress(idAddress);
         p.setProfessionalCard(professionalCard);
         p.setMedicalSpeciality(medicalSpeciality);
         p.setWorkShift(workShift);
@@ -197,26 +213,29 @@ public class PersonManagedBean {
     public String update(int id){
         Person p = personFacade.find(id);
         
-        p.setDocument(0);
+        p.setDocument(document);
         p.setName(name);
         p.setSurname(surname);
         p.setPhoneNumber(phoneNumber);
         p.setEmail(email);
+        p.setIdAddress(idAddress);
         p.setProfessionalCard(professionalCard);
         p.setMedicalSpeciality(medicalSpeciality);
         p.setWorkShift(workShift);
         p.setArrivalTurn(arrivalTurn);
         p.setPersonType(0);
         
-        return "index";
+        personFacade.edit(p);
+        
+        return "person";
     }
     
-    public String delete(int id){
+    public String remove(int id){
         Person p = personFacade.find(id);
         
         personFacade.remove(p);
         
-        return "index";
+        return "person";
     }
 
     public String getTotalName() {
