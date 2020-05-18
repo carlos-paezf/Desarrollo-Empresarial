@@ -10,33 +10,30 @@
     </h:head>
     <h:body>
         
-        <ui:include src="index.xhtml" />
+        <ui:include src="../index.xhtml" />
         
         <h:form id="address-index">
             
-            <h:panelGrid columns="2">
-                
-                <h:outputText value="ID Address: " />
-                <p:inputText value="#{addressManagedBean.idAddress}" />
-                <h:outputText value="Name: " />
-                <p:inputText value="#{addressManagedBean.name}" />
-                <h:outputText value="Relation: " />
-                 <p:selectOneMenu validator="#{addressManagedBean.relation.idAddress}" >
-                     <f:selectItems value="#{addressManagedBean.index()}" var="a" itemValue="#{a.idAddress}" itemLabel="#{a.name}" />
-                </p:selectOneMenu>
-                
-            </h:panelGrid>
-            
+            <p:link value="CREATE AN ADDRESS" outcome="form" />
+            <br></br>
+            <h1>Address</h1>
             <p:dataTable value="#{addressManagedBean.index()}" var="a">
             
                 <p:column headerText="ID Address: ">
                     <h:outputText value="#{a.idAddress}" />
                 </p:column>
+                
                 <p:column headerText="Name: ">
                     <h:outputText value="#{a.name}" />
                 </p:column>
+                
                 <p:column headerText="Relation: ">
                     <h:outputText value="#{a.relation.idAddress}" />
+                </p:column>
+                
+                <p:column headerText="Action">
+                    <p:commandButton action="#{addressManagedBean.view(a.idAddress)}" value="View" />
+                    <p:commandButton action="#{addressManagedBean.remove(a.idAddress)}" value="Remove" />
                 </p:column>
                 
             </p:dataTable>

@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <h:form id="invoice-form">
+
+            <p:link value="LIST OF INVOICES" outcome="index" />
+            <br></br>
+
+            <h:panelGrid columns="2">
+
+                <h:outputText value="ID, Name Person" />
+                <p:selectOneMenu validator="#{invoiceManagedBean.idPerson.idPerson}" >
+                    <f:selectItems value="#{personManagedBean.index()}" var="p" itemValue="#{p.idPerson}" itemLabel="#{p.idPerson}, #{p.name} #{p.surname}" />
+                </p:selectOneMenu>
+
+                <h:outputText value="ID, Name Animal" />
+                <p:selectOneMenu validator="#{invoiceManagedBean.idAnimal.idAnimal}" >
+                    <f:selectItems value="#{animalManagedBean.index()}" var="a" itemValue="#{a.idAnimal}" itemLabel="#{a.idAnimal}, #{a.name}" />
+                </p:selectOneMenu>
+
+                <h:outputText value="Expedition Date:" /> 
+                <p:calendar mode="popup" value="#{invoiceManagedBean.expeditionDate}" />
+
+                <h:outputText value="ID, Name Medical Treatment" />
+                <p:selectOneMenu validator="#{invoiceManagedBean.idMedicalTreatment.idMedicalTreatment}" >
+                    <f:selectItems value="#{medicalTreatmentManagedBean.index()}" var="mt" itemValue="#{mt.idMedicalTreatment}" itemLabel="#{mt.idMedicalTreatment}, #{mt.nameTreatment}" />
+                </p:selectOneMenu>                
+
+                <h:outputText value="Total Price: "/>
+                <p:inputText value="#{invoiceManagedBean.totalPrice}"/>
+                
+                <p:commandButton action="#{invoiceManagedBean.create()}" value="Save" />
+                
+            </h:panelGrid>
+
+        </h:form>
+
+    </h:body>
+</html>
+

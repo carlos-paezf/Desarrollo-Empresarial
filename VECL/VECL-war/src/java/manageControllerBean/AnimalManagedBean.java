@@ -45,6 +45,9 @@ public class AnimalManagedBean {
      * Creates a new instance of AnimalManagedBean
      */
     public AnimalManagedBean() {
+        idClientOwner = new Person();
+        idTreatment = new MedicalTreatment();
+        foundIn = new Address();
     }
 
     public Integer getIdAnimal() {
@@ -151,7 +154,7 @@ public class AnimalManagedBean {
     public String view(int id){
         Animal a = animalFacade.find(id);
         
-        idAnimal = a.getIdAnimal();
+        this.idAnimal = a.getIdAnimal();
         updateVaccines = a.getUpdateVaccines();
         name = a.getName();
         age = a.getAge();
@@ -164,7 +167,7 @@ public class AnimalManagedBean {
         foundIn = a.getFoundIn();
         animalType = a.getAnimalType();
         
-        return "animal";
+        return "form";
     }
     
     public String create(){
@@ -184,7 +187,7 @@ public class AnimalManagedBean {
         
         animalFacade.create(a);
         
-        return "animal";
+        return "index";
     }
     
     public String update(int id){
@@ -204,7 +207,7 @@ public class AnimalManagedBean {
         
         animalFacade.edit(a);
         
-        return "animal";
+        return "index";
     }
     
     public String remove(int id){
@@ -212,6 +215,6 @@ public class AnimalManagedBean {
         
         animalFacade.remove(a);
         
-        return "person";
+        return "index";
     }
 }

@@ -101,7 +101,7 @@ public class MedicineManagedBean {
         expirationDate = m.getExpirationDate();
         manufacturer = m.getManufacturer();
         
-        return "medicine";
+        return "form";
     }
     
     public String create(){
@@ -115,7 +115,7 @@ public class MedicineManagedBean {
         
         medicineFacade.create(m);
         
-        return "medicine";
+        return "index";
     }
     
     public String update(int id){
@@ -129,7 +129,7 @@ public class MedicineManagedBean {
         
         medicineFacade.edit(m);
         
-        return "medicine";
+        return "index";
     }
     
     public String remove(int id){
@@ -137,6 +137,6 @@ public class MedicineManagedBean {
         
         medicineFacade.remove(m);
         
-        return "medicine";
+        return "index";
     }
 }

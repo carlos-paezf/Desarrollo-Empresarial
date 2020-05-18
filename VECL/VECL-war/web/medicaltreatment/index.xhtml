@@ -9,21 +9,42 @@
     </h:head>
     <h:body>
         
-        <ui:include src="index.xhtml" />
+        <ui:include src="../index.xhtml" />
         
         <h:form id="medicalTreatment-index">
             
-            <h:panelGrid columns="2">
-                
-                <h:outputText value="ID Medical Treatment: " />
-                <p:inputText value="#{medicalTreatmentManagedBean.idMedicalTreatment}" />
-                
-            </h:panelGrid>
-            
+            <p:link value="CREATE A MEDICAL TREATMENT" outcome="form" />
+            <br></br>
+            <h1>Medicals Treatments</h1>
             <p:dataTable value="#{medicalTreatmentManagedBean.index()}" var="mt">
             
+                <p:column headerText="Id Medical Tratment: ">
+                    <h:outputText value="#{mt.idMedicalTreatment}" />
+                </p:column>
+                
                 <p:column headerText="Name Treatment: ">
                     <h:outputText value="#{mt.nameTreatment}" />
+                </p:column>
+                
+                <p:column headerText="Id Medicine: ">
+                    <h:outputText value="#{mt.idMedicine.idMedicine}" />
+                </p:column>
+                
+                <p:column headerText="Turn of Sacrifice: ">
+                    <h:outputText value="#{mt.turnOfSacrifice}" />
+                </p:column>
+                
+                <p:column headerText="Place of Realization: ">
+                    <h:outputText value="#{mt.placeRealization.idAddress    }" />
+                </p:column>
+                
+                <p:column headerText="Price: ">
+                    <h:outputText value="#{mt.price}" />
+                </p:column>
+                
+                <p:column headerText="Action">
+                    <p:commandButton action="#{medicalTreatmentManagedBean.view(mt.idMedicalTreatment)}" value="View" />
+                    <p:commandButton action="#{medicalTreatmentManagedBean.remove(mt.idMedicalTreatment)}" value="Remove" />
                 </p:column>
                 
             </p:dataTable>

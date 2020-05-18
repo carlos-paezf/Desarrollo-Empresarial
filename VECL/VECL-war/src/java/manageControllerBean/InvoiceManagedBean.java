@@ -39,6 +39,9 @@ public class InvoiceManagedBean {
      * Creates a new instance of InvoiceManagedBean
      */
     public InvoiceManagedBean() {
+        idAnimal = new Animal();
+        idPerson = new Person();
+        idMedicalTreatment = new MedicalTreatment();
     }
 
     public Integer getIdInvoice() {
@@ -97,20 +100,19 @@ public class InvoiceManagedBean {
     public String view(int id) {
         Invoice i = invoiceFacade.find(id);
 
-        idInvoice = i.getIdInvoice();
+        this.idInvoice = i.getIdInvoice();
         idPerson = i.getIdPerson();
         idAnimal = i.getIdAnimal();
         expeditionDate = i.getExpeditionDate();
         idMedicalTreatment = i.getIdMedicalTreatment();
         totalPrice = i.getTotalPrice();
 
-        return "invoice";
+        return "form";
     }
 
     public String create() {
         Invoice i = new Invoice();
 
-        i.setIdPerson(idPerson);
         i.setIdAnimal(idAnimal);
         i.setExpeditionDate(expeditionDate);
         i.setIdMedicalTreatment(idMedicalTreatment);
@@ -118,7 +120,7 @@ public class InvoiceManagedBean {
 
         invoiceFacade.create(i);
 
-        return "invoice";
+        return "index";
     }
 
     public String update(int id) {
@@ -132,7 +134,7 @@ public class InvoiceManagedBean {
 
         invoiceFacade.edit(i);
 
-        return "invoice";
+        return "index";
     }
     
     public String remove(int id){
@@ -140,6 +142,6 @@ public class InvoiceManagedBean {
         
         invoiceFacade.remove(i);
         
-        return "invoice";
+        return "index";
     }
 }

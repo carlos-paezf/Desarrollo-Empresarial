@@ -37,6 +37,8 @@ public class MedicalTreatmentManagedBean {
      * Creates a new instance of MedicalTreatmentManagedBean
      */
     public MedicalTreatmentManagedBean() {
+        idMedicine = new Medicine();
+        placeRealization = new Address();
     }
 
     public Integer getIdMedicalTreatment() {
@@ -95,20 +97,19 @@ public class MedicalTreatmentManagedBean {
     public String view(int id){
         MedicalTreatment mt = medicalTreatmentFacade.find(id);
         
-        idMedicalTreatment = mt.getIdMedicalTreatment();
+        this.idMedicalTreatment = mt.getIdMedicalTreatment();
         idMedicine = mt.getIdMedicine();
         nameTreatment = mt.getNameTreatment();
         turnOfSacrifice = mt.getTurnOfSacrifice();
         placeRealization = mt.getPlaceRealization();
         price = mt.getPrice();
         
-        return "medicalTreatment";
+        return "form";
     }
     
     public String create(){
         MedicalTreatment mt = new MedicalTreatment();
         
-        mt.setIdMedicine(idMedicine);
         mt.setNameTreatment(nameTreatment);
         mt.setTurnOfSacrifice(turnOfSacrifice);
         mt.setPlaceRealization(placeRealization);
@@ -116,13 +117,12 @@ public class MedicalTreatmentManagedBean {
         
         medicalTreatmentFacade.create(mt);
         
-        return "medicalTreatment";
+        return "index";
     }
     
     public String update(int id){
         MedicalTreatment mt = medicalTreatmentFacade.find(id);
         
-        mt.setIdMedicine(idMedicine);
         mt.setNameTreatment(nameTreatment);
         mt.setTurnOfSacrifice(turnOfSacrifice);
         mt.setPlaceRealization(placeRealization);
@@ -130,7 +130,7 @@ public class MedicalTreatmentManagedBean {
         
         medicalTreatmentFacade.edit(mt);
         
-        return "medicalTreatment";
+        return "index";
     }
     
     public String remove(int id){
@@ -138,6 +138,6 @@ public class MedicalTreatmentManagedBean {
         
         medicalTreatmentFacade.remove(mt);
         
-        return "medicalTreatment";
+        return "index";
     }
 }

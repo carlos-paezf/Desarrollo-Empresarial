@@ -14,26 +14,64 @@
 
         <h:form id="animal-index">
 
-            <h:panelGrid columns="2">
-
-                <h:outputText value="ID Animal: " />
-                <p:inputText value="#{animalManagedBean.idAnimal}" />
-                <h:outputText value="ID Client Owner: " />
-                <p:selectOneMenu validator="#{animalManagedBean.idClientOwner.idPerson}" >
-                    <f:selectItems value="#{personManagedBean.index()}" var="p" itemValue="#{p.idPerson}" itemLabel="#{p.name}" />
-                </p:selectOneMenu>
-
-            </h:panelGrid>
-
+            <p:link value="CREATE AN ANIMAL" outcome="form" />
+            <br></br>
+            <h1>Animals</h1>
             <p:dataTable value="#{animalManagedBean.index()}" var="a">
 
+                <p:column headerText="IDAnimal">
+                    <h:outputText value="#{a.idAnimal}" />
+                </p:column>
+                
                 <p:column headerText="Name: ">
                     <h:outputText value="#{a.name}" />
                 </p:column>
+                
+                <p:column headerText="Update Vacines">
+                    <h:outputText value="#{a.updateVaccines}" />
+                </p:column>
+                
                 <p:column headerText="Client Owner: ">
                     <h:outputText value="#{a.idClientOwner.idPerson}" />
                 </p:column>
+                
+                <p:column headerText="Age:" >
+                    <h:outputText value="#{a.age}" />
+                </p:column>
 
+                <p:column headerText="Species: " >
+                    <h:outputText value="#{a.species}" />
+                </p:column>
+                
+                <p:column headerText="Breed: ">
+                    <h:outputText value="#{a.breed}"/>
+                </p:column>
+                
+                <p:column headerText="Treatment Medical:">
+                    <h:outputText value="#{a.idTreatment.idMedicalTreatment}"/>
+                </p:column>
+                
+                <p:column headerText="Admission Date:">
+                    <h:outputText value="#{a.admissionDate}" />
+                </p:column>
+                
+                <p:column headerText="Departure Date:">
+                    <h:outputText value="#{a.departureDate}"/>
+                </p:column>
+                
+                <p:column headerText="Found in:">
+                    <h:outputText value="#{a.foundIn.idAddress}" />
+                </p:column>
+                
+                <p:column headerText="Type Animal">
+                    <h:outputText value="#{a.animalType}" />
+                </p:column>
+                
+                <p:column headerText="Action">
+                    <p:commandButton action="#{animalManagedBean.view(a.idAnimal)}" value="View" />
+                    <p:commandButton action="#{animalManagedBean.remove(a.idAnimal)}" value="Remove" />
+                </p:column>
+                
             </p:dataTable>
 
         </h:form>

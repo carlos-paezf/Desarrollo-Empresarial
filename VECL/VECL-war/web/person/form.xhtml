@@ -11,6 +11,9 @@
         
         <h:form id="person-form">
             
+            <p:link value="LIST OF PERSONS" outcome="index" />
+            <br></br>
+            
             <h:panelGrid columns="2">
 
                 <h:outputText value="Document: "></h:outputText>
@@ -28,9 +31,9 @@
                 <h:outputText value="E-mail:"></h:outputText>
                 <p:inputText value="#{personManagedBean.email}"/>
 
-                <h:outputText value="Id Address:"></h:outputText>
+                <h:outputText value="Id, Name Address:"></h:outputText>
                 <p:selectOneMenu validator="#{personManagedBean.idAddress.idAddress}" >
-                    <f:selectItems value="#{addressManagedBean.index()}" var="a" itemValue="#{a.idAddress}" itemLabel="#{a.name}" />
+                    <f:selectItems value="#{addressManagedBean.index()}" var="a" itemValue="#{a.idAddress}" itemLabel="#{a.idAddress}, #{a.name}" />
                 </p:selectOneMenu>
                 
                 <h:outputText value="Professional Card:"></h:outputText>

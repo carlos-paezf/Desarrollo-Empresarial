@@ -9,21 +9,42 @@
     </h:head>
     <h:body>
         
-        <ui:include src="index.xhtml" />
+        <ui:include src="../index.xhtml" />
         
         <h:form id="medicine-index">
             
-            <h:panelGrid columns="2">
-                
-                <h:outputText value="ID Medicine" />
-                <p:inputText value="#{medicineManagedBean.idMedicine}" />
-                
-            </h:panelGrid>
-            
+            <p:link value="CREATE A MEDICINE" outcome="form" />
+            <br></br>
+            <h1>Medicines</h1>
             <p:dataTable value="#{medicineManagedBean.index()}" var="m">
             
-                <p:column headerText="Name: ">
+                <p:column headerText="ID Medicine: ">
+                    <h:outputText value="#{m.idMedicine}" />
+                </p:column>
+                
+                 <p:column headerText="Barcode: ">
+                    <h:outputText value="#{m.barcode}" />
+                </p:column>
+                
+                <p:column headerText="Name Medicine: ">
                     <h:outputText value="#{m.nameMedicine}" />
+                </p:column>
+                
+                <p:column headerText="Quantity in warehouse: ">
+                    <h:outputText value="#{m.quantityInWarehouse}" />
+                </p:column>
+                
+                <p:column headerText="Expiration date:">
+                    <h:outputText value="#{m.expirationDate}" />
+                </p:column>
+                
+                <p:column headerText="Manufacturer: ">
+                    <h:outputText value="#{m.manufacturer}" />
+                </p:column>
+                
+                <p:column headerText="Action">
+                    <p:commandButton action="#{medicineManagedBean.view(m.idMedicine)}" value="View" />
+                    <p:commandButton action="#{medicineManagedBean.remove(m.idMedicine)}" value="Remove" />
                 </p:column>
                 
             </p:dataTable>

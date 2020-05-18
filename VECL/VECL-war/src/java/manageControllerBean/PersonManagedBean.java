@@ -28,8 +28,6 @@ public class PersonManagedBean {
     //Special Attributes
     @EJB
     private PersonFacadeLocal personFacade;
-    private AnimalFacadeLocal animalFacade;
-    private InvoiceFacadeLocal invoiceFacade;
     //Controller Attributes
     private Integer idPerson;
     private int document;
@@ -51,6 +49,8 @@ public class PersonManagedBean {
      * Creates a new instance of PersonManagedBean
      */
     public PersonManagedBean() {
+        idAddress = new Address();
+        idRescuedPet = new Animal();
     }
     
     public Integer getIdPerson() {
@@ -162,18 +162,10 @@ public class PersonManagedBean {
         return personFacade.findAll();
     }
     
-    public List<Animal> animals(){
-        return animalFacade.findAll();
-    }
-    
-    public List<Invoice> invoices(){
-        return invoiceFacade.findAll();
-    }
-    
     public String view(int id){
         Person p = personFacade.find(id);
         
-        idPerson = p.getIdPerson();
+        this.idPerson = p.getIdPerson();
         document = p.getDocument();
         name = p.getName();
         surname = p.getSurname();
@@ -202,6 +194,7 @@ public class PersonManagedBean {
         p.setMedicalSpeciality(medicalSpeciality);
         p.setWorkShift(workShift);
         p.setArrivalTurn(arrivalTurn);
+        p.setIdRescuedPet(idRescuedPet);
         p.setPersonType(0);
         
         personFacade.create(p);
@@ -223,11 +216,12 @@ public class PersonManagedBean {
         p.setMedicalSpeciality(medicalSpeciality);
         p.setWorkShift(workShift);
         p.setArrivalTurn(arrivalTurn);
+        p.setIdRescuedPet(idRescuedPet);
         p.setPersonType(0);
         
         personFacade.edit(p);
         
-        return "person";
+        return "index";
     }
     
     public String remove(int id){
@@ -235,7 +229,7 @@ public class PersonManagedBean {
         
         personFacade.remove(p);
         
-        return "person";
+        return "index";
     }
 
     public String getTotalName() {

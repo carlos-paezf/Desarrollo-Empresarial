@@ -32,6 +32,7 @@ public class AddressManagedBean {
      * Creates a new instance of AddressManagedBean
      */
     public AddressManagedBean() {
+        relation = new Address();
     }
 
     public Integer getIdAddress() {
@@ -66,11 +67,11 @@ public class AddressManagedBean {
     public String view(int id){
         Address a = addressFacade.find(id);
         
-        idAddress = a.getIdAddress();
+        this.idAddress = a.getIdAddress();
         name = a.getName();
         relation = a.getRelation();
         
-        return "address";
+        return "form";
     }
     
     public String create(){
@@ -81,7 +82,7 @@ public class AddressManagedBean {
         
         addressFacade.create(a);
         
-        return "address";
+        return "index";
     }
     
     public String update(int id){
@@ -90,7 +91,7 @@ public class AddressManagedBean {
         a.setName(name);
         a.setRelation(relation);
         
-        return "address";
+        return "index";
     }
     
     public String remove(int id){
@@ -98,7 +99,7 @@ public class AddressManagedBean {
         
         addressFacade.remove(a);
         
-        return "address";
+        return "index";
     }
     
 }
