@@ -10,7 +10,7 @@
     </h:head>
     <h:body>
 
-        <ui:include src="../index.xhtml" />
+        <ui:include src="../index.xhtml"></ui:include>
 
         <h:form id="person-index">
 
@@ -46,11 +46,11 @@
                 <p:column headerText="Address">
                     <h:outputText value="#{p.idAddress.idAddress}" />
                 </p:column>
-                
+
                 <p:column headerText="Professional Card">
                     <h:outputText value="#{p.professionalCard}" />
                 </p:column>
-                
+
                 <p:column headerText="Medical Speciality">
                     <h:outputText value="#{p.medicalSpeciality}" />
                 </p:column>
@@ -58,7 +58,7 @@
                 <p:column headerText="Work Shift">
                     <h:outputText value="#{p.workShift}" />
                 </p:column>
-                
+
                 <p:column headerText="Arrival Turn">
                     <h:outputText value="#{p.arrivalTurn}" />
                 </p:column>
@@ -66,7 +66,7 @@
                 <p:column headerText="Rescued Pet">
                     <h:outputText value="#{p.idRescuedPet.idAnimal}" />
                 </p:column>
-                
+
                 <p:column headerText="Person Type">
                     <h:outputText value="#{p.personType}" />
                 </p:column>
@@ -75,7 +75,7 @@
                     <p:commandButton action="#{personManagedBean.view(p.idPerson)}" value="View" />
                     <p:commandButton action="#{personManagedBean.remove(p.idPerson)}" value="Remove" />
                 </p:column>
-                
+
             </p:dataTable>
 
         </h:form>
