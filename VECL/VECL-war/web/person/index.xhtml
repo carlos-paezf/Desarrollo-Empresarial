@@ -6,79 +6,97 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Index Person</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport"    content="width=device-width, initial-scale=1.0"/>
+        <meta name="description" content=""/>
+        <meta name="author"      content="David Ferrer (USTA Tunja)"/>
+
+        <title>Veterinary Clinic Web Applicattion</title>
+
+        <link rel="shortcut icon" href="../resources/assets/images/EscudoUsta.png"/>
+
+        <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700"/>
+        <link rel="stylesheet" href="../resources/assets/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../resources/assets/css/font-awesome.min.css"/>
+
+        <!-- Custom styles for our template -->
+        <link rel="stylesheet" href="../resources/assets/css/bootstrap-theme.css" media="screen" />
+        <link rel="stylesheet" href="../resources/assets/css/main.css"/>
     </h:head>
     <h:body>
 
-        <ui:include src="../index.xhtml"></ui:include>
+        <ui:include src="../index.html"></ui:include>
 
-        <h:form id="person-index">
+        <div class="container">
+            <h:form id="person-index">
 
-            <p:link value="CREATE A PERSON" outcome="form" />
-            <br></br>
-            <h1>Clients - Veterinarians - Adopters</h1>
-            <p:dataTable value="#{personManagedBean.index()}" var="p">
+                <p:link value="CREATE A PERSON" outcome="form" />
+                <br></br>
+                <h1>Clients - Veterinarians - Adopters</h1>
+                <p:dataTable value="#{personManagedBean.index()}" var="p">
 
-                <p:column headerText="IdPerson">
-                    <h:outputText value="#{p.idPerson}" />
-                </p:column>
+                    <p:column headerText="IdPerson">
+                        <h:outputText value="#{p.idPerson}" />
+                    </p:column>
 
-                <p:column headerText="Document">
-                    <h:outputText value="#{p.document}" />
-                </p:column>
+                    <p:column headerText="Document">
+                        <h:outputText value="#{p.document}" />
+                    </p:column>
 
-                <p:column headerText="Name">
-                    <h:outputText value="#{p.name}" />
-                </p:column>
+                    <p:column headerText="Name">
+                        <h:outputText value="#{p.name}" />
+                    </p:column>
 
-                <p:column headerText="Surname">
-                    <h:outputText value="#{p.surname}" />
-                </p:column>
+                    <p:column headerText="Surname">
+                        <h:outputText value="#{p.surname}" />
+                    </p:column>
 
-                <p:column headerText="Phone Number">
-                    <h:outputText value="#{p.phoneNumber}" />
-                </p:column>
+                    <p:column headerText="Phone Number">
+                        <h:outputText value="#{p.phoneNumber}" />
+                    </p:column>
 
-                <p:column headerText="Email">
-                    <h:outputText value="#{p.email}" />
-                </p:column>
+                    <p:column headerText="Email">
+                        <h:outputText value="#{p.email}" />
+                    </p:column>
 
-                <p:column headerText="Address">
-                    <h:outputText value="#{p.idAddress.idAddress}" />
-                </p:column>
+                    <p:column headerText="Address">
+                        <h:outputText value="#{p.idAddress.idAddress}" />
+                    </p:column>
 
-                <p:column headerText="Professional Card">
-                    <h:outputText value="#{p.professionalCard}" />
-                </p:column>
+                    <p:column headerText="Professional Card">
+                        <h:outputText value="#{p.professionalCard}" />
+                    </p:column>
 
-                <p:column headerText="Medical Speciality">
-                    <h:outputText value="#{p.medicalSpeciality}" />
-                </p:column>
+                    <p:column headerText="Medical Speciality">
+                        <h:outputText value="#{p.medicalSpeciality}" />
+                    </p:column>
 
-                <p:column headerText="Work Shift">
-                    <h:outputText value="#{p.workShift}" />
-                </p:column>
+                    <p:column headerText="Work Shift">
+                        <h:outputText value="#{p.workShift}" />
+                    </p:column>
 
-                <p:column headerText="Arrival Turn">
-                    <h:outputText value="#{p.arrivalTurn}" />
-                </p:column>
+                    <p:column headerText="Arrival Turn">
+                        <h:outputText value="#{p.arrivalTurn}" />
+                    </p:column>
 
-                <p:column headerText="Rescued Pet">
-                    <h:outputText value="#{p.idRescuedPet.idAnimal}" />
-                </p:column>
+                    <p:column headerText="Rescued Pet">
+                        <h:outputText value="#{p.idRescuedPet.idAnimal}" />
+                    </p:column>
 
-                <p:column headerText="Person Type">
-                    <h:outputText value="#{p.personType}" />
-                </p:column>
+                    <p:column headerText="Person Type">
+                        <h:outputText value="#{p.personType}" />
+                    </p:column>
 
-                <p:column headerText="Action">
-                    <p:commandButton action="#{personManagedBean.view(p.idPerson)}" value="View" />
-                    <p:commandButton action="#{personManagedBean.remove(p.idPerson)}" value="Remove" />
-                </p:column>
+                    <p:column headerText="Action">
+                        <p:commandButton action="#{personManagedBean.view(p.idPerson)}" value="View" />
+                        <p:commandButton action="#{personManagedBean.remove(p.idPerson)}" value="Remove" />
+                    </p:column>
 
-            </p:dataTable>
+                </p:dataTable>
 
-        </h:form>
+            </h:form>
+        </div>
 
     </h:body>
 </html>
