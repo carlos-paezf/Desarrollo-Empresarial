@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html">
+        <h:head>
+            <title><ui:insert name="head"></ui:insert></title>
+            <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+            <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+            <meta http-equiv="Pragma" content="no-cache" />
+            <meta http-equiv="Expires" content="0" />
+
+            <link href="../../resources/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+            <meta charset="utf-8"/>
+            <meta name="viewport"    content="width=device-width, initial-scale=1.0"/>
+            <meta name="description" content=""/>
+            <meta name="author"      content="David Ferrer (USTA Tunja)"/>
+
+            <title>Veterinary Clinic Web Applicattion</title>
+
+            <link rel="shortcut icon" href="../../resources/assets/images/EscudoUsta.png"/>
+
+            <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700"/>
+            <link rel="stylesheet" href="../../resources/assets/css/bootstrap.min.css"/>
+            <link rel="stylesheet" href="../../resources/assets/css/font-awesome.min.css"/>
+
+            <!-- Custom styles for our template -->
+            <link rel="stylesheet" href="../../resources/assets/css/bootstrap-theme.css" media="screen" />
+            <link rel="stylesheet" href="../../resources/assets/css/main.css"/>
+        </h:head>
+
+        <h:body class="home">
+            
+            <div class="navbar navbar-inverse navbar-fixed-top headroom" >
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- Button for smallest screens -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                    <a class="navbar-brand" href="/Veterinary-war/"><img src="/../../resources/assets/images/logo.png" alt="Veterinary Clinic Web"/></a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav pull-right">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More Pages <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li class="active"><a href="person/index.xhtml">Person</a></li>
+                                <li><a href="animal/index.xhtml">Animal</a></li>
+                                <li><a href="medicine/index.xhtml">Medicine</a></li>
+                                <li><a href="medicaltreatment/index.xhtml">Medical Treatment</a></li>
+                                <li><a href="address/index.xhtml">Address</a></li>
+                                <li><a href="invoice/index.xhtml">Invoice</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a class="btn" href="signin.html">SIGN IN / SIGN UP</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div> 
+        <!-- /.navbar -->
+            
+            <div id="contenedor">
+                <div id="header">
+                    <div id="logo">
+                        <div id="logo_app"></div>
+                        <div id="titulo_app">
+                            <ui:insert name="header">
+                                Veterinary Clinic Web Application
+                            </ui:insert>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="seccionComfaboy">
+                    <div id="contenido">
+                        <div id="componentePrincipal">
+                            <div id="componente">
+                                <div>
+                                    <h2>
+                                        <ui:insert name="tituloFuncionalidad"></ui:insert>
+                                    </h2>
+                                    <div class="menuCerti">
+                                        <h:form>
+                                            <p:panelGrid styleClass="upan">
+                                                <p:row>
+                                                    <p:column style="width:100%; padding: 0 0 0 0;">
+                                                        <p:menubar id="menu">
+
+                                                            <p:menuitem value="Inicio" outcome="/index.xhtml"></p:menuitem>
+
+                                                            <p:submenu label="Person Module">
+                                                                <p:menuitem value="List Persons" outcome="/person/index.xhtml"></p:menuitem>
+                                                                <p:menuitem value="Create a Person" outcome="/person/form.xhtml"></p:menuitem>
+                                                            </p:submenu>
+
+                                                            <p:submenu label="Animal Module">
+                                                                <p:menuitem value="List Animals" outcome="/animal/index.xhtml"></p:menuitem>
+                                                                <p:menuitem value="Create a Animal" outcome="/animal/form.xhtml"></p:menuitem>
+                                                            </p:submenu>
+
+                                                        </p:menubar>
+                                                    </p:column>
+                                                </p:row>
+                                            </p:panelGrid>
+                                        </h:form>
+                                    </div>
+                                    <ui:insert name="body"></ui:insert>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <footer id="footer" class="top-space">
+
+                <div class="footer1">
+                    <div class="container">
+                        <div class="row">
+
+                            <div class="col-md-3 widget">
+                                <h3 class="widget-title">Contact</h3>
+                                <div class="widget-body">
+                                    <p>+57 314 328 2831<br></br>
+                                        <a href="mailto:#">carlos.paezf@usantoto.edu.co</a><br></br>
+                                        <br></br>
+                                        Santo Tomas University, Tunja Campus. Boyaca, Colombia
+                                    </p>	
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 widget">
+                                <h3 class="widget-title">Follow me</h3>
+                                <div class="widget-body">
+                                    <p class="follow-me-icons">
+                                        <a href=""><i class="fa fa-twitter fa-2"></i></a>
+                                        <a href=""><i class="fa fa-dribbble fa-2"></i></a>
+                                        <a href=""><i class="fa fa-github fa-2"></i></a>
+                                        <a href=""><i class="fa fa-facebook fa-2"></i></a>
+                                    </p>	
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 widget">
+                                <h3 class="widget-title">Description</h3>
+                                <div class="widget-body">
+                                    <p>This website is a project for the Business Development area. Project applied to learning, which brings 
+                                        together the basic concepts of Hibernate, Java EE 7, Html, CSS and JavaScript. The code for this project 
+                                        is open source, which can be found along with another related project at 
+                                        <a href="https://github.com/carlos-paezf/Desarrollo-Empresarial.git">
+                                            https://github.com/carlos-paezf/Desarrollo-Empresarial.git</a></p>
+                                </div>
+                                <h3 class="widget-title">Vision USTA System Engineering</h3>
+                                <div class="widget-body">
+                                    <p>The academic program of Systems Engineering will be recognized in the disciplinary, regional and global 
+                                        context, as a generator of technological innovations that allow satisfying various needs of society, maintaining 
+                                        the principles of truth, ethics and service.</p>
+                                </div>
+                            </div>
+
+                        </div> <!-- /row of widgets -->
+                    </div>
+                </div>
+
+                <div class="footer2">
+                    <div class="container">
+                        <div class="row">
+
+                            <div class="col-md-6 widget">
+                                <div class="widget-body">
+                                    <p class="simplenav">
+                                        <a href="#">Home</a> | 
+                                        <a href="about.html">About</a> |
+                                        <a href="sidebar-right.html">Sidebar</a> |
+                                        <a href="contact.html">Contact</a> |
+                                        <b><a href="signup.html">Sign up</a></b>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 widget">
+                                <div class="widget-body">
+                                    <p class="text-right">
+                                        Copyright &copy; 2020, David Ferrer. Designed by <a href="" rel="designer">DavidFerrer</a> 
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div> <!-- /row of widgets -->
+                    </div>
+                </div>
+
+            </footer>
+        </h:body>
+    </f:view>
+</html>

@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Index Address</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport"    content="width=device-width, initial-scale=1.0"/>
+        <meta name="description" content=""/>
+        <meta name="author"      content="David Ferrer (USTA Tunja)"/>
+
+        <title>Veterinary Clinic Web Applicattion</title>
+
+        <link rel="shortcut icon" href="../resources/assets/images/EscudoUsta.png"/>
+
+        <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700"/>
+        <link rel="stylesheet" href="../resources/assets/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../resources/assets/css/font-awesome.min.css"/>
+
+        <!-- Custom styles for our template -->
+        <link rel="stylesheet" href="../resources/assets/css/bootstrap-theme.css" media="screen" />
+        <link rel="stylesheet" href="../resources/assets/css/main.css"/>
+    </h:head>
+    <h:body>
+        
+        <ui:include src="../index.html" />
+        
+        <h:form id="address-index">
+            
+            <p:link value="CREATE AN ADDRESS" outcome="form" />
+            <br></br>
+            <h1>Address</h1>
+            <p:dataTable value="#{addressManagedBean.index()}" var="a">
+            
+                <p:column headerText="ID Address: ">
+                    <h:outputText value="#{a.idAddress}" />
+                </p:column>
+                
+                <p:column headerText="Name: ">
+                    <h:outputText value="#{a.name}" />
+                </p:column>
+                
+                <p:column headerText="Relation: ">
+                    <h:outputText value="#{a.relation.idAddress}" />
+                </p:column>
+                
+                <p:column headerText="Action">
+                    <p:commandButton action="#{addressManagedBean.view(a.idAddress)}" value="View" />
+                    <p:commandButton action="#{addressManagedBean.remove(a.idAddress)}" value="Remove" />
+                </p:column>
+                
+            </p:dataTable>
+            
+        </h:form>
+        
+    </h:body>
+</html>
+

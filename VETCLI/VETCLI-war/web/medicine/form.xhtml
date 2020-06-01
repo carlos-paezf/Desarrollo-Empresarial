@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        <h:form id="medicine-form">
+            
+            <p:link value="LIST OF MEDICINES" outcome="index" />
+            <br></br>
+            
+            <h:panelGrid columns="2">
+                
+                <h:outputText value="Barcode:" />
+                <p:inputText value="#{medicineManagedBean.barcode}" />
+                
+                <h:outputText value="Name Medicine:" />
+                <p:inputText value="#{medicineManagedBean.nameMedicine}" />
+                
+                <h:outputText value="Quantity in Warehouse:" />
+                <p:inputText value="#{medicineManagedBean.quantityInWarehouse}" />
+                
+                <h:outputText value="Expiration Date:" /> 
+                <p:calendar mode="popup" value="#{medicineManagedBean.expirationDate}" />
+                 
+                <h:outputText value="Manufacturer:" />
+                <p:inputText value="#{medicineManagedBean.manufacturer}" />
+                
+                <p:commandButton action="#{medicineManagedBean.create()}" value="Save" />
+                
+            </h:panelGrid>
+            
+        </h:form>
+        
+    </h:body>
+</html>
+
